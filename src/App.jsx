@@ -22,7 +22,11 @@ const App = () => {
         <Intro />
         <PhotoGrid />
         <Places />
+      </div>
+      <div>
         <Cover />
+      </div>
+      <div className="pt-1.75 px-12 bg-[#2A2C2F] flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
         <Footer />
       </div>
     </div>
