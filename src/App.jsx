@@ -1,24 +1,32 @@
-import React from 'react'
-import Header from './components/Header'
-import Lead from './components/Lead'
-import Intro from './components/Intro'
-import PhotoGrid from './components/PhotoGrid'
-import Places from './components/Places'
-import Cover from './components/Cover'
-import Footer from './components/Footer'
+import React from "react";
+import Header from "./components/Header";
+import Lead from "./components/Lead";
+import Intro from "./components/Intro";
+import PhotoGrid from "./components/PhotoGrid";
+import Places from "./components/Places";
+import Cover from "./components/Cover";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div className='pt-1.75 px-3 bg-[#2A2C2F] '>
-      <Header />
-      <Lead />
-      <Intro />
-      <PhotoGrid />
-      <Places />
-      <Cover />
-      <Footer />
+    <div>
+      <div className="pt-1.75 px-3 bg-[#2A2C2F] flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
+        <Header />
+        <Lead />
+      </div>
+      <div className="bg-[#2A2C2F] flex justify-center lg:px-10 xl:px-36">
+        <img className="w-full" src="src\assets\__image.png" alt="image" />
+      </div>
+      <div className="pt-1.75 px-3 bg-[#2A2C2F] flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
+        <p className="uppercase text-[10px] tracking-[1.5px] lg:px-9 xl:px-32">ваша полка — верхняя</p>
+        <Intro />
+        <PhotoGrid />
+        <Places />
+        <Cover />
+        <Footer />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
