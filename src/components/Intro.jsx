@@ -2,11 +2,11 @@ import React from "react";
 
 const Intro = () => {
   return (
-    <div>
-      <h1 className="font-black text-[32px] max-[413px]:max-w-52 leading-9 md:text-[54px] mb-10">
+    <div className=" xl:pl-[100px]">
+      <h1 className="font-black text-[32px] max-[490px]:max-w-52 leading-10 md:text-[54px] mb-10">
         Чего мы там не видели?
       </h1>
-      <p className="mb-[33px]">
+      <p className="mb-[33px] max-w-[690px]">
         По опросам ВЦИОМ, 95% россиян мечтают куда-нибудь поехать, но только 36%
         планируют провести отпуск в родной стране. Мол, чего мы тут, дома, не
         видели? На самом деле, Россия — это целая вселенная с ласковым морем
@@ -24,12 +24,14 @@ const Intro = () => {
         <p className="text-xs">
           <span className="font-semibold">
             Объектов природного наследия ЮНЕСКО
-          </span> 12
+          </span>{" "}
+          12
         </p>
         <p className="text-xs">
           <span className="font-semibold">
             Объектов культурного наследия ЮНЕСКО
-          </span> 16
+          </span>{" "}
+          16
         </p>
         <p className="text-xs">
           <span className="font-semibold">Природных заповедников</span> 105
