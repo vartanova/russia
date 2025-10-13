@@ -1,8 +1,8 @@
-import place1 from "./placesPhoto/__image1.jpg";
-import place2 from "./placesPhoto/__image2.jpg";
-import place3 from "./placesPhoto/__image3.jpg";
-import place4 from "./placesPhoto/__image4.jpg";
-import place5 from "./placesPhoto/__image5.jpg";
+import place1 from "./placesPhotoImg1.jpg";
+import place2 from "./placesPhotoImg2.jpg";
+import place3 from "./placesPhotoImg3.jpg";
+import place4 from "./placesPhotoImg4.jpg";
+import place5 from "./placesPhotoImg5.jpg";
 
 
 export const places = [

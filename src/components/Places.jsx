@@ -1,5 +1,5 @@
 import React from "react";
-import { places } from "../assets/places/places";
+import { places } from "../assets/places";
 
 const Places = () => {
   return (

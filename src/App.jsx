@@ -7,7 +7,7 @@ import Places from "./components/Places";
 import Cover from "./components/Cover";
 import Footer from "./components/Footer";
 
-import LeadImg from "./assets/leadImg/__image.png"
+import LeadImg from "./assets/leadImg.png"
 
 const App = () => {
   return (
