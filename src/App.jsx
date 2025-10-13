@@ -9,15 +9,15 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div>
-      <div className="pt-1.75 px-12 bg-[#2A2C2F] flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
+    <div className="bg-[#2A2C2F]">
+      <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
         <Header />
         <Lead />
       </div>
-      <div className="bg-[#2A2C2F] flex justify-center lg:px-10 xl:px-36">
+      <div className="flex justify-center lg:px-10 xl:px-36">
         <img className="w-full" src="src\assets\__image.png" alt="image" />
       </div>
-      <div className="pt-1.75 px-12 bg-[#2A2C2F] flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
+      <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
         <p className="uppercase text-[10px] tracking-[1.5px] lg:px-9 xl:px-32">ваша полка — верхняя</p>
         <Intro />
         <PhotoGrid />
@@ -26,7 +26,7 @@ const App = () => {
       <div>
         <Cover />
       </div>
-      <div className="pt-1.75 px-12 pb-6 bg-[#2A2C2F] flex flex-col ">
+      <div className="pt-1.75 px-12 pb-6 flex flex-col ">
         <Footer />
       </div>
     </div>
