@@ -2,7 +2,7 @@ import React from "react";
 
 const Cover = () => {
   return (
-    <div className="grid grid-cols-1 xl:px-12 bg-[#2A2C2F]">
+    <div className="grid grid-cols-1 xl:px-12 bg-[#2A2C2F] pb-[92px]">
       <img
         className="col-start-1 row-start-1 z-0 opacity-70"
         src="src\assets\cover__backgroundPhoto.jpg"
