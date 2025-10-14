@@ -10,7 +10,8 @@ i18next
   .use(initReactI18next)
   .init({
     lng: "ru",
-    fallbackLng: "ru",
+    fallbackLng: ["ru", "en"],
+    debug: true,
     ns: ["lead", "intro", "places", "photoGrid", "cover", "footer"],
     backend: {
       loadPath: "../public/languages/{{lng}}/{{ns}}.json",
