@@ -7,9 +7,12 @@ import Places from "./components/Places";
 import Cover from "./components/Cover";
 import Footer from "./components/Footer";
 import LeadImg from "./assets/leadImg.png";
+import { useTranslation } from "react-i18next";
 
 
 const App = () => {
+  const { t } = useTranslation("leadText");
+  
   return (
     <div className="bg-[#2A2C2F]">
       <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
@@ -21,7 +24,7 @@ const App = () => {
       </div>
       <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
         <p className="uppercase text-[10px] tracking-[1.5px] lg:px-9 xl:px-32">
-          ваша полка — верхняя
+          {t("text")}
         </p>
         <Intro />
         <PhotoGrid />
