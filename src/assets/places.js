@@ -5,6 +5,7 @@ import place4 from "./placesPhotoImg4.jpg";
 import place5 from "./placesPhotoImg5.jpg";
 
 
+
 export const places = [
   {
     title: "Куршская коса",

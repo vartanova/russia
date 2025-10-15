@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const Lead = () => {
-  const { t } = useTranslation(["lead"]);
+  const { t } = useTranslation("lead");
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 max-[400px]:gap-4 mb-16">
