@@ -1,3 +1,26 @@
 {
-    
+  "place1": {
+    "title": "Curonian Spit",
+    "text1": "Here, in the midst of forests and sand dunes, you can see two water horizons — the calm Curonian Lagoon on one side and the rippling waves of the Baltic Sea on the other. A unique natural area on the edge of the Russian enclave.",
+    "text2": "You may have watched Zvyagintsev and even heard the story of the Arctic festival in Teriberka. Perhaps the word «Khibiny» did not remain under the snow of school memories of geography lessons. You may not have been interested in the ultra-deep borehole penetrating the earth's crust, but apatites have been covering you with apathy for a long time. But your dream of seeing the northern Lights begins to come true with a ticket to Murmansk."
+  },
+  "place2": {
+    "title": "Kolsky",
+    "text1": "Almost the entire peninsula is located beyond the Arctic Circle. The Sami tundra, with the taiga to the south and the Arctic Ocean pretending to be the Barents Sea to the north.",
+    "text2": "You may have watched Zvyagintsev and even heard the story of the Arctic festival in Teriberka. Perhaps the word «Khibiny» did not remain under the snow of school memories of geography lessons. You may not have been interested in the ultra-deep borehole penetrating the earth's crust, but apatites have been covering you with apathy for a long time. But your dream of seeing the northern Lights begins to come true with a ticket to Murmansk."
+},
+  "place3": {
+    "title": "Altai",
+    "text1": "Altai is one of the most beautiful places in Russia. First of all, because of the mountains: if you drive along the ridge, you will see slopes strewn with pine trees, mountain rivers and lakes. And if you open the windows in the car, you can get acquainted with the invisible miracle of the local places — the mountain air.",
+    "text2": "The climate in Altai is temperate, so it's best to go here in summer. This is how you will see all the diversity of the local flora and fauna. Moose roam the forests of Altai, eagles fly over the ridges, and roe deer graze on the plains. And the famous manuls are also inhabitants of the Altai Territory."
+  },
+  "place4": {
+    "title": "Winter Baikal",
+    "text1": "Everyone knows Lake Baikal as the largest lake in the world. Many people also know that this is the largest source of fresh water and one of the most beautiful places in Russia.",
+    "text2": "Of course, this is all true. But Baikal is also an ideal place for skioring competitions. This is a sport where a skier ties himself to a motorcycle, and the tandem tries to develop as much speed as possible on the ice. In March 2019, a world record of 197.011 km/h was set at the Baikal Mile Festival."
+  },
+  "place5": {
+    "title": "Karelia",
+    "text1": "Siberia ends not in the Urals, but in Karelia: Siberian larch, which forms the taiga, does not grow west of the Reservoir. But here it grows by 30 meters — the forests of Karelian national parks have never known an axe because of the impassable swamps. Some pines are more than half a millennium old. Touch a living being who saw the sun before Ivan the Terrible saw it. There are no trails for a hundred kilometers in the virgin forest. And on rare paths, trees a couple of meters from the ground are marked with bear claws. So that everyone knows who's boss here."
+  }
 }

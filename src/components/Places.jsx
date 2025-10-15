@@ -1,7 +1,11 @@
 import React from "react";
 import { places } from "../assets/places";
+import { useTranslation } from "react-i18next";
+
 
 const Places = () => {
+    const { t } = useTranslation("places");
+  
   return (
     <div>
       {places.map((place, index) => (
@@ -10,7 +14,7 @@ const Places = () => {
           className="mb-20 grid grid-cols-2 gap-12 xl:px-[100px] max-[768px]:grid-cols-1 max-[768px]:gap-8 max-[768px]:mb-[50px]"
         >
           <h1 className="font-black text-7xl max-w-[460px] max-[768px]:text-[32px]">
-            {place.title}
+            {t(place.title)}
           </h1>
           <div className="flex flex-col justify-end">
             <span className="uppercase text-xs">url</span>
@@ -27,8 +31,8 @@ const Places = () => {
             alt="image"
           />
           <div className="flex flex-col gap-[26px]">
-            <div>{place.text1}</div>
-            {place.text2}
+            <div>{t(place.text1)}</div>
+            {t(place.text2)}
           </div>
         </div>
       ))}
