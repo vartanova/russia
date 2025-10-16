@@ -1,5 +1,6 @@
 import React from "react";
 import TravelPurpose from "../components/TravelPurpose";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const TravelRequest = () => {
@@ -36,7 +37,7 @@ const TravelRequest = () => {
             </button>
           </div>
         </div>
-        <div className="pb-10">
+        <div className="mb-7">
           <p className="pb-2.5">{t("destination.p")}</p>
           <input
             type="text"
@@ -46,7 +47,7 @@ const TravelRequest = () => {
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
           />
         </div>
-        <div className="pb-10 flex gap-5">
+        <div className="mb-7 flex gap-5">
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
             <input
@@ -68,11 +69,11 @@ const TravelRequest = () => {
             />
           </div>
         </div>
-        <div className="pb-10">
+        <div className="mb-7">
           <p className="pb-2.5">{t("purpose.p")}</p>
           <TravelPurpose />
         </div>
-        <div>
+        <div className="mb-7">
           <p className="pb-2.5">{t("notes.p")}</p>
           <input
             type="text"
@@ -81,6 +82,17 @@ const TravelRequest = () => {
             className="bg-[#ffffff68] w-full h-24 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
             placeholder={t("notes.placeholder")}
           />
+        </div>
+        <div className="flex justify-end">
+          <Link to="/">
+            <button
+              // type="submit"
+              className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
+            >
+              {/* {t("btn")} */}
+              Принять
+            </button>
+          </Link>
         </div>
       </div>
     </div>

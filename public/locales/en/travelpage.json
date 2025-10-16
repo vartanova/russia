@@ -22,5 +22,7 @@
     "notes": {
         "p": "Additional Notes",
         "placeholder": "Enter any additional notes..."
-    }
+    },
+    "btn": "Submit"
+
 }
