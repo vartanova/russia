@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-
 import logo from "./../assets/__logo.svg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { i18n } = useTranslation();
@@ -23,19 +23,20 @@ const Header = () => {
         <a href="#">
           <img className="max-[400px]:max-w-36" src={logo} alt="logo" />
         </a>
-        <a
-          href="#"
+        <Link
+          to="/"
           className="pt-3.5 cursor-pointer focus:underline underline-offset-3 decoration-1 under text-white text-2xl max-[607px]:text-lg max-[400px]:hidden"
         >
           {t("nav.home")}
-        </a>
-        <a
-          href="#"
+        </Link>
+        <Link
+          to="/TravelRequest"
           className="pt-3.5 cursor-pointer focus:underline underline-offset-3 decoration-1 under text-white text-2xl max-[607px]:text-lg max-[400px]:hidden"
         >
           {t("nav.travel")}
-        </a>
+        </Link>
       </nav>
+
       <div className="flex gap-4">
         <button
           onClick={handleChangeLangRu}
