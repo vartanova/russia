@@ -10,4 +10,14 @@
   color: #AAAAAA;
 }
 
-
+.travel {
+  height: auto;
+  max-height: fit-content;
+  background-image: url('./assets/travelRequestBg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: center; */
+}
+.travel__purpose_item {
+  color: black;
+}
