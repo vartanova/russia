@@ -13,7 +13,7 @@ i18n
     lng: "ru",
     fallbackLng: ["ru", "en"],
     debug: true,
-    ns: ["lead", "intro", "places", "cover", "footer", "leadText"],
+    ns: ["lead", "intro", "places", "cover", "footer", "leadText", "header"],
     backend: {
       loadPath: "../public/locales/{{lng}}/{{ns}}.json",
     },
