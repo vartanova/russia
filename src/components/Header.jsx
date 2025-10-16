@@ -30,7 +30,7 @@ const Header = () => {
           {t("nav.home")}
         </Link>
         <Link
-          to="/TravelRequest"
+          to="/travel"
           className="pt-3.5 cursor-pointer focus:underline underline-offset-3 decoration-1 under text-white text-2xl max-[607px]:text-lg max-[400px]:hidden"
         >
           {t("nav.travel")}
