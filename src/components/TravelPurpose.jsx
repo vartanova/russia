@@ -7,7 +7,7 @@ const TravelPurpose = () => {
   return (
     <div className="w-full max-w-sm min-w-[200px]">
       <div className="relative">
-        <select className=" w-full px-5 py-2.5 bg-[#ffffff68] text-sm border solid rounded-sm outline-none appearance-none cursor-pointer">
+        <select className=" w-full px-5 py-2.5 bg-[#ffffff68] text-sm max-sm:text-xs border solid rounded-sm outline-none appearance-none cursor-pointer">
           <option className="travel__purpose_item text-xs">
             {t("purpose.item1")}
           </option>

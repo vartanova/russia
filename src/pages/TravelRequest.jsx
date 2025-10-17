@@ -2,20 +2,10 @@ import React from "react";
 import TravelPurpose from "../components/TravelPurpose";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import SwitchLocale from "../components/SwitchLocale";
 
 const TravelRequest = () => {
   const { t } = useTranslation("travelpage");
-
-  const { i18n } = useTranslation();
-  const handleChangeLangRu = () => {
-    const ruLang = i18n.language === "en" ? "ru" : "ru";
-    i18n.changeLanguage(ruLang);
-  };
-
-  const handleChangeLangEn = () => {
-    const enLang = i18n.language === "ru" ? "en" : "en";
-    i18n.changeLanguage(enLang);
-  };
 
   const handleSubmit = () => {
     alert("Новая поездка создана");
@@ -23,25 +13,12 @@ const TravelRequest = () => {
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
-      <div className="w-auto px-9 py-9 border rounded-4xl backdrop-blur-lg bg-[#2a2c2f23] ">
-        <div className="flex justify-between items-center pb-10 ">
+      <div className="w-auto px-9 py-9 border rounded-4xl backdrop-blur-lg bg-[#2a2c2f23] max-md:w-[500px] max-sm:w-[300px] max-sm:text-xs">
+        <div className="flex justify-between items-center mb-10 max-sm:mb-5">
           <h1 className="font-bold text-3xl">{t("title")}</h1>
-          <div className="flex gap-4">
-            <button
-              onClick={handleChangeLangRu}
-              className="cursor-pointer focus:underline underline-offset-3 decoration-1 under text-white"
-            >
-              Ru
-            </button>
-            <button
-              onClick={handleChangeLangEn}
-              className="cursor-pointer focus:underline underline-offset-3 decoration-1 under text-white"
-            >
-              En
-            </button>
-          </div>
+          <SwitchLocale/>
         </div>
-        <div className="mb-7">
+        <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("destination.p")}</p>
           <input
             type="text"
@@ -51,7 +28,7 @@ const TravelRequest = () => {
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
           />
         </div>
-        <div className="mb-7 flex gap-5">
+        <div className="mb-7 flex gap-5 max-md:flex-col max-sm:gap-2.5 max-sm:mb-5">
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
             <input
@@ -59,7 +36,7 @@ const TravelRequest = () => {
               name="dateStart"
               id="dateStart"
               placeholder={t("datestart.placeholder")}
-              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs"
+              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
           </div>
           <div>
@@ -69,15 +46,15 @@ const TravelRequest = () => {
               name="dateEnd"
               id="dateEnd"
               placeholder={t("dateend.placeholder")}
-              className="bg-[#ffffff68] w-full px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs"
+              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
           </div>
         </div>
-        <div className="mb-7">
+        <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("purpose.p")}</p>
           <TravelPurpose />
         </div>
-        <div className="mb-7">
+        <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("notes.p")}</p>
           <textarea
             type="text"
