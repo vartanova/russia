@@ -17,6 +17,10 @@ const TravelRequest = () => {
     i18n.changeLanguage(enLang);
   };
 
+  const handleSubmit = () => {
+    alert("Новая поездка создана");
+  };
+
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
       <div className="w-auto px-9 py-9 border rounded-4xl backdrop-blur-lg bg-[#2a2c2f23] ">
@@ -51,21 +55,21 @@ const TravelRequest = () => {
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
             <input
-              type="date"
-              name=""
-              id=""
+              type="text"
+              name="dateStart"
+              id="dateStart"
               placeholder={t("datestart.placeholder")}
-              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-xs"
+              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs"
             />
           </div>
           <div>
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
-              type="date"
-              name=""
-              id=""
+              type="text"
+              name="dateEnd"
+              id="dateEnd"
               placeholder={t("dateend.placeholder")}
-              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-xs"
+              className="bg-[#ffffff68] w-full px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs"
             />
           </div>
         </div>
@@ -75,24 +79,41 @@ const TravelRequest = () => {
         </div>
         <div className="mb-7">
           <p className="pb-2.5">{t("notes.p")}</p>
-          <input
+          <textarea
             type="text"
-            name=""
-            id=""
-            className="bg-[#ffffff68] w-full h-24 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
+            name="notes"
+            id="notes"
+            className="bg-[#ffffff68] resize-none  w-full break-all border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
             placeholder={t("notes.placeholder")}
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-between items-center">
           <Link to="/">
-            <button
-              // type="submit"
-              className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
-            >
-              {/* {t("btn")} */}
-              Принять
+            <button type="button">
+              <svg
+                className="w-[20px] py-1.5 cursor-pointer outline-none focus:underline underline-offset-3 decoration-1 under"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1"
+                  d="m15 19-7-7 7-7"
+                />
+              </svg>
             </button>
           </Link>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
+          >
+            {t("btn")}
+          </button>
         </div>
       </div>
     </div>
