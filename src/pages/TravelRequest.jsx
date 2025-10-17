@@ -1,5 +1,5 @@
 import React from "react";
-import TravelPurpose from "../components/TravelPurpose";
+import TravelPurpose from "../components/travelRequest/TravelPurpose";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../components/SwitchLocale";
