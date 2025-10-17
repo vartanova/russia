@@ -15,7 +15,7 @@ i18n
     debug: true,
     ns: ["lead", "intro", "places", "cover", "footer", "leadText", "header", "travelpage", "travelpurpose"],
     backend: {
-      loadPath: "../public/locales/{{lng}}/{{ns}}.json",
+      loadPath: "locales/{{lng}}/{{ns}}.json",
     },
 
   });
