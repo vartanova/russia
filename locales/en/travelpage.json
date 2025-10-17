@@ -1,0 +1,28 @@
+{
+    "title": "New Travel Request",
+    "destination": {
+        "p": "Destination",
+        "placeholder": "Enter destination..."
+    },
+    "datestart": {
+        "p": "Start Date",
+        "placeholder": "Select start date..."
+    },
+    "dateend": {
+        "p": "End Date",
+        "placeholder": "Select end date..."
+    },
+    "purpose": {
+        "p": "Purpose of Travel",
+        "item1": "I'm going on a business trip",
+        "item2": "I want to visit my family",
+        "item3": "Work issues need to be resolved",
+        "item4": "I plan to relax by the sea"
+    },
+    "notes": {
+        "p": "Additional Notes",
+        "placeholder": "Enter any additional notes..."
+    },
+    "btn": "Submit"
+
+}

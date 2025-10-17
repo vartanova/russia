@@ -1,0 +1,10 @@
+{
+    "link":{
+        "item1": "Maps",
+        "item2": "Weather",
+        "item3": "Schedule",
+        "item4": "Calendar",
+        "item5": "Travel"
+    },
+    "text": "© 2020. Enter your name"
+}
