@@ -3,6 +3,7 @@ import TravelPurpose from "../components/TravelPurpose";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../components/SwitchLocale";
+import TravelDate from "../components/travelRequest/TravelDate";
 
 const TravelRequest = () => {
   const { t } = useTranslation("travelpage");
@@ -28,28 +29,7 @@ const TravelRequest = () => {
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
           />
         </div>
-        <div className="mb-7 flex gap-5 max-md:flex-col max-sm:gap-2.5 max-sm:mb-5">
-          <div>
-            <p className="pb-2.5">{t("datestart.p")}</p>
-            <input
-              type="text"
-              name="dateStart"
-              id="dateStart"
-              placeholder={t("datestart.placeholder")}
-              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
-            />
-          </div>
-          <div>
-            <p className="pb-2.5">{t("dateend.p")}</p>
-            <input
-              type="text"
-              name="dateEnd"
-              id="dateEnd"
-              placeholder={t("dateend.placeholder")}
-              className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
-            />
-          </div>
-        </div>
+        <TravelDate/>
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("purpose.p")}</p>
           <TravelPurpose />
