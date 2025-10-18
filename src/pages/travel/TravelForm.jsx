@@ -15,6 +15,7 @@ const TravelForm = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -27,9 +28,15 @@ const TravelForm = () => {
   console.log(errors);
 
   const handleSubmitTravel = () => {
-    setTimeout(function () {
-      alert("Ваша поездка создана");
-    }, 3000);
+    if (
+      watch("destination") !== "" ||
+      watch("dateStart") !== "" ||
+      watch("dateEnd") !== ""
+    ) {
+      setTimeout(function () {
+        alert("Ваша поездка создана");
+      }, 3000);
+    }
   };
 
   return (
@@ -48,6 +55,7 @@ const TravelForm = () => {
             {...register("destination")}
             type="text"
             name="destination"
+            id="destination"
             placeholder={t("destination.placeholder")}
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
           />
@@ -62,6 +70,7 @@ const TravelForm = () => {
               type="text"
               {...register("dateStart")}
               name="dateStart"
+              id="dateStart"
               placeholder={t("datestart.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
@@ -74,6 +83,7 @@ const TravelForm = () => {
             <input
               type="text"
               name="dateEnd"
+              id="dateEnd"
               {...register("dateEnd")}
               placeholder={t("dateend.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
