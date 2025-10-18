@@ -15,7 +15,7 @@ const SwitchLocale = () => {
   };
   
   return (
-    <div className="flex justify-between items-center pt-3.5">
+    <div className="flex justify-between items-center">
       <div className="flex gap-4">
         <button
           onClick={handleChangeLangRu}

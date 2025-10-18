@@ -21,3 +21,7 @@
 .travel__purpose_item {
   color: black;
 }
+.error {
+  color: rgb(206, 28, 28);
+  font-weight: 700;
+}
