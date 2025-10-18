@@ -54,8 +54,6 @@ const TravelForm = () => {
           <input
             {...register("destination")}
             type="text"
-            name="destination"
-            id="destination"
             placeholder={t("destination.placeholder")}
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
           />
@@ -69,8 +67,6 @@ const TravelForm = () => {
             <input
               type="text"
               {...register("dateStart")}
-              name="dateStart"
-              id="dateStart"
               placeholder={t("datestart.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
@@ -82,8 +78,6 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
               type="text"
-              name="dateEnd"
-              id="dateEnd"
               {...register("dateEnd")}
               placeholder={t("dateend.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
