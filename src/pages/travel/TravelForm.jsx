@@ -46,7 +46,7 @@ const TravelForm = () => {
         className="w-auto px-9 py-9 border rounded-4xl backdrop-blur-lg bg-[#2a2c2f23] max-md:w-[500px] max-sm:w-[300px] max-sm:text-xs"
       >
         <div className="flex justify-between items-center mb-10 max-sm:mb-5">
-          <h1 className="font-bold text-3xl">{t("title")}</h1>
+          <h1 className="font-bold text-3xl pt-3.5">{t("title")}</h1>
           <SwitchLocale />
         </div>
         <div className="mb-7 max-sm:mb-5">

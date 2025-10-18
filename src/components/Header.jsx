@@ -16,7 +16,7 @@ const Header = () => {
 
         <Link
           to="/travel"
-          className="cursor-pointer focus:underline underline-offset-3 decoration-1 under text-white text-2xl max-[607px]:text-lg max-[400px]:hidden"
+          className="cursor-pointer pt-3.5 focus:underline underline-offset-3 decoration-1 under text-white text-2xl max-[607px]:text-lg max-[400px]:hidden"
         >
           {t("nav.travel")}
         </Link>
