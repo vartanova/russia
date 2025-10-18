@@ -29,9 +29,9 @@ const TravelForm = () => {
 
   const handleSubmitTravel = () => {
     if (
-      watch("destination") !== "" ||
-      watch("dateStart") !== "" ||
-      watch("dateEnd") !== ""
+      watch("destination") &&
+      watch("dateStart") &&
+      watch("dateEnd")
     ) {
       setTimeout(function () {
         alert("Ваша поездка создана");
