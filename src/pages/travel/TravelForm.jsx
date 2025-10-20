@@ -28,15 +28,14 @@ const TravelForm = () => {
   console.log(errors);
 
   const handleSubmitTravel = () => {
-    if (
-      watch("destination") &&
-      watch("dateStart") &&
-      watch("dateEnd")
-    ) {
+    if (watch("destination") && watch("dateStart") && watch("dateEnd")) {
       setTimeout(function () {
         alert("Ваша поездка создана");
       }, 3000);
     }
+  };
+  const handleInput = (e) => {
+    e.target.value = e.target.value.replace(/[^0-9.]/g, "");
   };
 
   return (
@@ -65,6 +64,7 @@ const TravelForm = () => {
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
             <input
+              onInput={handleInput}
               type="text"
               {...register("dateStart")}
               placeholder={t("datestart.placeholder")}
@@ -78,6 +78,7 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
               type="text"
+              onInput={handleInput}
               {...register("dateEnd")}
               placeholder={t("dateend.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"

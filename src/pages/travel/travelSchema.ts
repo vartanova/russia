@@ -11,5 +11,5 @@ export const schema = yup.object().shape({
   dateEnd: yup
     .string()
     .required("Обязательное поле ввода")
-    .matches(regDate, "Неверный формат даты ДД.ММ.ГГ"),
+    .matches(regDate, "Неверный формат даты ДД.ММ.ГГ")
 });
