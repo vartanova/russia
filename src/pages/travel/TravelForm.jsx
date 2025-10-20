@@ -17,7 +17,6 @@ const TravelForm = () => {
     register,
     handleSubmit,
     reset,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema(tError)),
@@ -25,17 +24,12 @@ const TravelForm = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    reset();
-  };
-  console.log(errors);
-
-  const handleSubmitTravel = () => {
-    if (watch("destination") && watch("dateStart") && watch("dateEnd")) {
-      setTimeout(function () {
+    setTimeout(function () {
         alert("Ваша поездка создана");
       }, 3000);
-    }
+    reset();
   };
+
   const handleInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9.]/g, "");
   };
@@ -110,7 +104,6 @@ const TravelForm = () => {
             <BtnBack />
           </Link>
           <button
-            onClick={handleSubmitTravel}
             type="submit"
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
           >
