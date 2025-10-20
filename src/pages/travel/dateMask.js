@@ -18,6 +18,25 @@
 //     e.target.value = formatted;
 //   });
 // }
+
+
+// export function applyDateMask(value) {
+//   if (!value) return "";
+
+//   value = value.replace(/[^0-9.]/g, "");
+
+//   if (value.length > 8) value = value.slice(0, 8);
+
+//   let formatted = value;
+//   if (value.length > 4) {
+//     formatted = value.replace(/^(\d{2})(\d{2})(\d{1,4})$/, "$1.$2.$3");
+//   } else if (value.length > 2) {
+//     formatted = value.replace(/^(\d{2})(\d{1,2})$/, "$1.$2");
+//   }
+
+//   return formatted
+// }
+
 export function applyDateMask(inputElement) {
   if (!inputElement) return;
 
@@ -36,3 +55,4 @@ export function applyDateMask(inputElement) {
     e.target.value = formatted;
   });
 }
+

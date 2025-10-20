@@ -18,6 +18,7 @@ const TravelForm = () => {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema(tError)),
@@ -34,17 +35,19 @@ const TravelForm = () => {
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
 
+  // const [value, setValue] = useState()
   const dateStartRef = useRef(null);
   const dateEndRef = useRef(null);
 
-  useEffect(() => {
-    if (dateStartRef.current) {
-      applyDateMask(dateStartRef.current);
-    }
-    if (dateEndRef.current) {
-      applyDateMask(dateEndRef.current);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (dateStartRef.current) {
+  //     setValue("dateStart", applyDateMask(dateStartRef.current))
+  //   }
+  //   if (dateEndRef.current) {
+  //     setValue("dateEnd", applyDateMask(dateEndRef.current))
+
+  //   }
+  // }, []);
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
@@ -74,11 +77,16 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("datestart.p")}</p>
 
             <input
-              onChange={(e) => setDateStart(applyDateMask(e.target.value))}
+              // onChange={(e) => setDateStart(applyDateMask(e.target.value))}
+              onChange={(e) => {
+                const masked = applyDateMask(e.target.value);
+                setDateStart(masked);
+                e.target.value = masked;
+              }}
               value={dateStart}
               ref={dateStartRef}
               type="text"
-              // {...register("dateStart")}
+              {...register("dateStart")}
               placeholder={t("datestart.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
               error={errors}
@@ -90,11 +98,16 @@ const TravelForm = () => {
           <div>
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
-              onChange={(e) => setDateEnd(applyDateMask(e.target.value))}
+              // onChange={(e) => setDateEnd(applyDateMask(e.target.value))}
               value={dateEnd}
               type="text"
               ref={dateEndRef}
-              // {...register("dateEnd")}
+              onChange={(e) => {
+                const masked = applyDateMask(e.target.value);
+                setDateEnd(masked);
+                e.target.value = masked;
+              }}
+              {...register("dateEnd")}
               placeholder={t("dateend.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
