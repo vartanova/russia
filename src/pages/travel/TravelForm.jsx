@@ -30,7 +30,6 @@ const TravelForm = () => {
   console.log(errors);
 
   const handleSubmitTravel = () => {
-    reset()
     if (watch("destination") && watch("dateStart") && watch("dateEnd")) {
       setTimeout(function () {
         alert("Ваша поездка создана");
