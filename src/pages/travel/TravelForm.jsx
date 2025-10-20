@@ -8,8 +8,6 @@ import SwitchLocale from "../../components/SwitchLocale";
 import BtnBack from "../../components/BtnBack";
 import { schema } from "./travelSchema";
 
-const regDate = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{2}$/;
-
 const TravelForm = () => {
   const { t } = useTranslation("travelpage");
 
@@ -32,6 +30,7 @@ const TravelForm = () => {
   console.log(errors);
 
   const handleSubmitTravel = () => {
+    reset()
     if (watch("destination") && watch("dateStart") && watch("dateEnd")) {
       setTimeout(function () {
         alert("Ваша поездка создана");
