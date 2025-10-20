@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TravelPurpose from "./TravelPurpose";
@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import SwitchLocale from "../../components/SwitchLocale";
 import BtnBack from "../../components/BtnBack";
 import { schema } from "./travelSchema";
+import { applyDateMask } from "./dateMask";
 
 const TravelForm = () => {
   const { t } = useTranslation("travelpage");
@@ -25,14 +26,23 @@ const TravelForm = () => {
   const onSubmit = (data) => {
     console.log(data);
     setTimeout(function () {
-        alert("Ваша поездка создана");
-      }, 3000);
+      alert("Ваша поездка создана");
+    }, 3000);
     reset();
   };
 
-  const handleInput = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9.]/g, "");
-  };
+  const dateStartRef = useRef(null);
+  const dateEndRef = useRef(null);
+
+  useEffect(() => {
+    if (dateStartRef.current) {
+      applyDateMask(dateStartRef.current);
+    }
+    if (dateEndRef.current) {
+      applyDateMask(dateEndRef.current);
+    }
+  }, []);
+
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
@@ -60,10 +70,12 @@ const TravelForm = () => {
         <div className="mb-7 flex gap-5 max-md:flex-col max-sm:gap-2.5 max-sm:mb-5">
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
+
             <input
-              onInput={handleInput}
+              ref={dateStartRef}
               type="text"
-              {...register("dateStart")}
+              // id="dateStart"
+              // {...register("dateStart")}
               placeholder={t("datestart.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
               error={errors}
@@ -76,8 +88,9 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
               type="text"
-              onInput={handleInput}
-              {...register("dateEnd")}
+              ref={dateEndRef}
+              // id="dateEnd"
+              // {...register("dateEnd")}
               placeholder={t("dateend.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />

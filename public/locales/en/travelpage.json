@@ -6,11 +6,11 @@
     },
     "datestart": {
         "p": "Start Date",
-        "placeholder": "Select start date..."
+        "placeholder": "Enter start date..."
     },
     "dateend": {
         "p": "End Date",
-        "placeholder": "Select end date..."
+        "placeholder": "Enter end date..."
     },
     "purpose": {
         "p": "Purpose of Travel",
