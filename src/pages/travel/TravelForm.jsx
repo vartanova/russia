@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { schema } from "./travelSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TravelPurpose from "./TravelPurpose";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../../components/SwitchLocale";
 import BtnBack from "../../components/BtnBack";
+import { schema } from "./travelSchema";
+
+const regDate = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.[0-9]{2}$/;
 
 const TravelForm = () => {
   const { t } = useTranslation("travelpage");
+
+  const { t: tError } = useTranslation("error");
 
   const {
     register,
@@ -18,7 +22,7 @@ const TravelForm = () => {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema(tError)),
   });
 
   const onSubmit = (data) => {
@@ -55,6 +59,7 @@ const TravelForm = () => {
             type="text"
             placeholder={t("destination.placeholder")}
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
+            eroro
           />
           <p className="error pt-2 text-xs italic">
             {errors.destination?.message}
@@ -69,6 +74,7 @@ const TravelForm = () => {
               {...register("dateStart")}
               placeholder={t("datestart.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
+              error={errors}
             />
             <p className="error pt-2 text-xs italic">
               {errors.dateStart?.message}
