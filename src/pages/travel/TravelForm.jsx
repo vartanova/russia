@@ -31,18 +31,23 @@ const TravelForm = () => {
     reset();
   };
 
-  const dateStartRef = useRef(null);
-  const dateEndRef = useRef(null);
+  const [value, setValue] = useState();
+  const dateRef = useRef([]);
 
   useEffect(() => {
-    if (dateStartRef.current) {
-      applyDateMask(dateStartRef.current);
-    }
-    if (dateEndRef.current) {
-      applyDateMask(dateEndRef.current);
-    }
+    dateRef.current.forEach((el) => {
+      if (el) applyDateMask(el);
+    });
   }, []);
 
+  // useEffect(() => {
+  //   if (dateStartRef.current) {
+  //     applyDateMask(dateStartRef.current);
+  //   }
+  //   if (dateEndRef.current) {
+  //     applyDateMask(dateEndRef.current);
+  //   }
+  // }, []);
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
@@ -72,7 +77,10 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("datestart.p")}</p>
 
             <input
-              ref={dateStartRef}
+              ref={(el) => {
+                register("dateStart").ref(el);
+                dateRef.current[0] = el;
+              }}
               type="text"
               // id="dateStart"
               // {...register("dateStart")}
@@ -88,7 +96,10 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
               type="text"
-              ref={dateEndRef}
+              ref={(el) => {
+                register("dateStart").ref(el);
+                dateRef.current[1] = el;
+              }}
               // id="dateEnd"
               // {...register("dateEnd")}
               placeholder={t("dateend.placeholder")}
