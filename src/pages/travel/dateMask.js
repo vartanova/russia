@@ -1,3 +1,23 @@
+// export function applyDateMask(inputElement) {
+//   if (!inputElement) return;
+
+//   inputElement.addEventListener("input", (e) => {
+//     let value = e.target.value.replace(/[^0-9.]/g, "");
+//     let formatted;
+//     if (value.length > 8) value = value.slice(0, 8)
+
+//     if (value.length <= 2) {
+//       formatted = value;
+//     } else if (value.length <= 4) {
+//       formatted = value.slice(0, 2) + "." + value.slice(2, 4);
+//     } else {
+//       formatted =
+//         value.slice(0, 2) + "." + value.slice(2, 4) + "." + value.slice(4);
+//     }
+
+//     e.target.value = formatted;
+//   });
+// }
 export function applyDateMask(inputElement) {
   if (!inputElement) return;
 
