@@ -1,58 +1,17 @@
-// export function applyDateMask(inputElement) {
-//   if (!inputElement) return;
 
-//   inputElement.addEventListener("input", (e) => {
-//     let value = e.target.value.replace(/[^0-9.]/g, "");
-//     let formatted;
-//     if (value.length > 8) value = value.slice(0, 8)
+export function applyDateMask(value) {
+  if (!value) return "";
 
-//     if (value.length <= 2) {
-//       formatted = value;
-//     } else if (value.length <= 4) {
-//       formatted = value.slice(0, 2) + "." + value.slice(2, 4);
-//     } else {
-//       formatted =
-//         value.slice(0, 2) + "." + value.slice(2, 4) + "." + value.slice(4);
-//     }
+  value = value.replace(/\D/g, "");
 
-//     e.target.value = formatted;
-//   });
-// }
+  if (value.length > 6) value = value.slice(0, 6);
 
+  let formatted = value;
+  if (value.length > 4) {
+    formatted = value.replace(/^(\d{2})(\d{2})(\d{1,2})$/, "$1.$2.$3");
+  } else if (value.length > 2) {
+    formatted = value.replace(/^(\d{2})(\d{1,2})$/, "$1.$2");
+  }
 
-// export function applyDateMask(value) {
-//   if (!value) return "";
-
-//   value = value.replace(/[^0-9.]/g, "");
-
-//   if (value.length > 8) value = value.slice(0, 8);
-
-//   let formatted = value;
-//   if (value.length > 4) {
-//     formatted = value.replace(/^(\d{2})(\d{2})(\d{1,4})$/, "$1.$2.$3");
-//   } else if (value.length > 2) {
-//     formatted = value.replace(/^(\d{2})(\d{1,2})$/, "$1.$2");
-//   }
-
-//   return formatted
-// }
-
-export function applyDateMask(inputElement) {
-  if (!inputElement) return;
-
-  inputElement.addEventListener("input", (e) => {
-    let value = e.target.value.replace(/\D/g, "");
-
-    if (value.length > 8) value = value.slice(0, 8);
-
-    let formatted = value;
-    if (value.length > 4) {
-      formatted = value.replace(/^(\d{2})(\d{2})(\d{1,4})$/, "$1.$2.$3");
-    } else if (value.length > 2) {
-      formatted = value.replace(/^(\d{2})(\d{1,2})$/, "$1.$2");
-    }
-
-    e.target.value = formatted;
-  });
+  return formatted;
 }
-

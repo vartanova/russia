@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TravelPurpose from "./TravelPurpose";
@@ -35,20 +35,6 @@ const TravelForm = () => {
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
 
-  // const [value, setValue] = useState()
-  const dateStartRef = useRef(null);
-  const dateEndRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (dateStartRef.current) {
-  //     setValue("dateStart", applyDateMask(dateStartRef.current))
-  //   }
-  //   if (dateEndRef.current) {
-  //     setValue("dateEnd", applyDateMask(dateEndRef.current))
-
-  //   }
-  // }, []);
-
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
       <form
@@ -66,7 +52,6 @@ const TravelForm = () => {
             type="text"
             placeholder={t("destination.placeholder")}
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
-            eroro
           />
           <p className="error pt-2 text-xs italic">
             {errors.destination?.message}
@@ -77,19 +62,16 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("datestart.p")}</p>
 
             <input
-              // onChange={(e) => setDateStart(applyDateMask(e.target.value))}
+              type="text"
+              value={dateStart || ""}
+              placeholder={t("datestart.placeholder")}
+              {...register("dateStart")}
               onChange={(e) => {
                 const masked = applyDateMask(e.target.value);
                 setDateStart(masked);
-                e.target.value = masked;
+                setValue("dateStart", masked);
               }}
-              value={dateStart}
-              ref={dateStartRef}
-              type="text"
-              {...register("dateStart")}
-              placeholder={t("datestart.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
-              error={errors}
             />
             <p className="error pt-2 text-xs italic">
               {errors.dateStart?.message}
@@ -98,17 +80,15 @@ const TravelForm = () => {
           <div>
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
-              // onChange={(e) => setDateEnd(applyDateMask(e.target.value))}
-              value={dateEnd}
               type="text"
-              ref={dateEndRef}
+              value={dateEnd || ""}
+              placeholder={t("dateend.placeholder")}
+              {...register("dateEnd")}
               onChange={(e) => {
                 const masked = applyDateMask(e.target.value);
                 setDateEnd(masked);
-                e.target.value = masked;
+                setValue("dateEnd", masked);
               }}
-              {...register("dateEnd")}
-              placeholder={t("dateend.placeholder")}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
             <p className="error pt-2 text-xs italic">
