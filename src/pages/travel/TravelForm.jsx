@@ -30,6 +30,8 @@ const TravelForm = () => {
       alert("Ваша поездка создана");
     }, 3000);
     reset();
+    setDateStart("");
+    setDateEnd("");
   };
 
   const [dateStart, setDateStart] = useState();
