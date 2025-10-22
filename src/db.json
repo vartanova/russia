@@ -1,0 +1,19 @@
+{
+  "newtravel": [
+    {
+      "destination": "Долина Нарзанов",
+      "dateStart": "22.10.25",
+      "dateEnd": "22.10.25"
+    },
+    {
+      "destination": "Медовые водопады",
+      "dateStart": "23.10.25",
+      "dateEnd": "23.10.25"
+    },
+    {
+      "destination": "Мидаграбинское озеро",
+      "dateStart": "22.10.25",
+      "dateEnd": "24.10.25"
+    }
+  ]
+}

@@ -34,6 +34,10 @@ const TravelForm = () => {
     setDateEnd("");
   };
 
+  // const handleDefault = (e) => {
+  //   e.preventDefault();
+  // };
+
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
 
@@ -41,6 +45,7 @@ const TravelForm = () => {
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
+        id="form"
         className="w-auto px-9 py-9 border rounded-4xl backdrop-blur-lg bg-[#2a2c2f23] max-md:w-[500px] max-sm:w-[300px] max-sm:text-xs"
       >
         <div className="flex justify-between items-center mb-10 max-sm:mb-5">
@@ -50,6 +55,7 @@ const TravelForm = () => {
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("destination.p")}</p>
           <input
+            name="destination"
             {...register("destination")}
             type="text"
             placeholder={t("destination.placeholder")}
@@ -65,6 +71,7 @@ const TravelForm = () => {
 
             <input
               type="text"
+              name="dateStart"
               value={dateStart || ""}
               placeholder={t("datestart.placeholder")}
               {...register("dateStart")}
@@ -75,7 +82,7 @@ const TravelForm = () => {
               }}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
-            <p className="error pt-2 text-xs italic">
+            <p className="error pt-2 text-xs italic max-w-[260px]">
               {errors.dateStart?.message}
             </p>
           </div>
@@ -83,6 +90,7 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
               type="text"
+              name="dateEnd"
               value={dateEnd || ""}
               placeholder={t("dateend.placeholder")}
               {...register("dateEnd")}
@@ -93,7 +101,7 @@ const TravelForm = () => {
               }}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
-            <p className="error pt-2 text-xs italic">
+            <p className="error pt-2 text-xs italic max-w-[260px]">
               {errors.dateEnd?.message}
             </p>
           </div>
@@ -112,9 +120,9 @@ const TravelForm = () => {
           />
         </div>
         <div className="flex justify-between items-center">
-          <Link to="/">
+          {/* <Link to="/">
             <BtnBack />
-          </Link>
+          </Link> */}
           <button
             type="submit"
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
