@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TravelPurpose from "./TravelPurpose";
@@ -24,22 +24,48 @@ const TravelForm = () => {
     resolver: yupResolver(schema(tError)),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    setTimeout(function () {
-      alert("Ваша поездка создана");
-    }, 3000);
-    reset();
-    setDateStart("");
-    setDateEnd("");
-  };
-
-  // const handleDefault = (e) => {
-  //   e.preventDefault();
-  // };
-
+  const [destination, setDestination] = useState();
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
+
+  const onSubmit = (e) => {
+    // e.preventDefault() почему то с этим все ломается
+    setTimeout(function () {
+      const newTravelObject = { destination, dateStart, dateEnd };
+
+      fetch(`http://localhost:3000/newtravel`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...newTravelObject,
+        }),
+      })
+        .then((response) => {
+          console.log("response:", response);
+
+          if (!response.ok) {
+            throw new Error("Не удалось создать поездку");
+          }
+
+          return response.json();
+        })
+        .then((json) => {
+          console.log("json:", json);
+
+          alert("Ваша поездка создана");
+          reset();
+          setDateStart("");
+          setDateEnd("");
+          setDestination("");
+        })
+        .catch((error) => {
+          alert("Возникла проблема с запросом: ", error.message);
+        });
+
+    }, 2000);
+  };
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
@@ -57,6 +83,10 @@ const TravelForm = () => {
           <input
             name="destination"
             {...register("destination")}
+            onChange={(e) => {
+              const val = e.target.value;
+              setDestination(val);
+            }}
             type="text"
             placeholder={t("destination.placeholder")}
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
@@ -68,7 +98,6 @@ const TravelForm = () => {
         <div className="mb-7 flex gap-5 max-md:flex-col max-sm:gap-2.5 max-sm:mb-5">
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
-
             <input
               type="text"
               name="dateStart"
