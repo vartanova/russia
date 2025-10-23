@@ -27,11 +27,13 @@ const TravelForm = () => {
   const [destination, setDestination] = useState();
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
+  const [isPending, setIsPending] = useState(false);
 
   const onSubmit = (e) => {
     // e.preventDefault() почему то с этим все ломается
     setTimeout(function () {
       const newTravelObject = { destination, dateStart, dateEnd };
+      // setIsPending(true);
 
       fetch(`http://localhost:3000/newtravel`, {
         method: "post",
@@ -55,6 +57,7 @@ const TravelForm = () => {
           console.log("json:", json);
 
           alert("Ваша поездка создана");
+          setIsPending(false);
           reset();
           setDateStart("");
           setDateEnd("");
@@ -63,7 +66,6 @@ const TravelForm = () => {
         .catch((error) => {
           alert("Возникла проблема с запросом: ", error.message);
         });
-
     }, 2000);
   };
 
@@ -148,15 +150,17 @@ const TravelForm = () => {
             placeholder={t("notes.placeholder")}
           />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col items-start">
           {/* <Link to="/">
             <BtnBack />
           </Link> */}
+          {isPending && <p className="pb-2.5">{t("btn.loading")}</p>}
           <button
+            onClick={() => setIsPending(true)}
             type="submit"
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
           >
-            {t("btn")}
+            {t("btn.accept")}
           </button>
         </div>
       </form>

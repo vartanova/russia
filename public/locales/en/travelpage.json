@@ -23,6 +23,9 @@
         "p": "Additional Notes",
         "placeholder": "Enter any additional notes..."
     },
-    "btn": "Submit"
+    "btn": {
+        "accept": "Submit",
+        "loading": "Loading..."
+    }
 
 }
