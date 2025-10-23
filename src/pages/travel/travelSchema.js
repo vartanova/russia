@@ -13,9 +13,11 @@ export const schema = (tError) =>
       .string()
       .required(tError("errorRequired"))
       .matches(regDate, tError("errorDate"))
-      // .min(yup.ref("dateStart"), tError("errorMatch")),
+
       .test("is-not-start", tError("errorMatch"), function (value) {
-        if (!value) return;
+        const { dateStart, dateEnd } = this.parent;
+        if (!value || !dateStart || !dateEnd) return;
+
         const start = dateStart.split(".").reverse().join("");
         const end = dateEnd.split(".").reverse().join("");
         return start <= end;
