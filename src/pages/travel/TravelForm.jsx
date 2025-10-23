@@ -31,9 +31,9 @@ const TravelForm = () => {
 
   const onSubmit = (e) => {
     // e.preventDefault() почему то с этим все ломается
+    setIsPending(true);
     setTimeout(function () {
       const newTravelObject = { destination, dateStart, dateEnd };
-      // setIsPending(true);
 
       fetch(`http://localhost:3000/newtravel`, {
         method: "post",
@@ -156,7 +156,6 @@ const TravelForm = () => {
           </Link> */}
           {isPending && <p className="pb-2.5">{t("btn.loading")}</p>}
           <button
-            onClick={() => setIsPending(true)}
             type="submit"
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
           >
