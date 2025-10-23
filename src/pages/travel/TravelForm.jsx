@@ -150,12 +150,13 @@ const TravelForm = () => {
             placeholder={t("notes.placeholder")}
           />
         </div>
-        <div className="flex flex-col items-start">
-          {/* <Link to="/">
-            <BtnBack />
-          </Link> */}
+        <div className="flex justify-between items-center">
+          <Link to="/">
+            <BtnBack isPending={isPending} />
+          </Link>
           <button
             type="submit"
+            disabled={isPending}
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
           >
             {isPending

@@ -1,8 +1,8 @@
 import React from "react";
 
-const BtnBack = () => {
+const BtnBack = ({isPending}) => {
   return (
-    <button type="button">
+    <button type="button" disabled={isPending}>
       <svg
         className="w-[20px] py-1.5 cursor-pointer outline-none focus:underline underline-offset-3 decoration-1 under"
         aria-hidden="true"
