@@ -154,12 +154,13 @@ const TravelForm = () => {
           {/* <Link to="/">
             <BtnBack />
           </Link> */}
-          {isPending && <p className="pb-2.5">{t("btn.loading")}</p>}
           <button
             type="submit"
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
           >
-            {t("btn.accept")}
+            {isPending
+              ? isPending && <p>{t("btn.loading")}</p>
+              : t("btn.accept")}
           </button>
         </div>
       </form>
