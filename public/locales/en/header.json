@@ -2,6 +2,7 @@
     "nav":
     {
         "home": "Home",
-        "travel": "Travel request"
+        "travel": "Arrange a trip",
+        "travelRequest": "Travel requests"
     }
 }

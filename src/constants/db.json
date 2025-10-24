@@ -1,0 +1,22 @@
+{
+  "newtravel": [
+    {
+      "id": "3edf",
+      "destination": "Медовые водопады",
+      "dateStart": "24.10.25",
+      "dateEnd": "24.10.25"
+    },
+    {
+      "id": "4448",
+      "destination": "Мидаграбинское озеро",
+      "dateStart": "23.10.25",
+      "dateEnd": "24.10.25"
+    },
+    {
+      "id": "81c3",
+      "destination": "Джилы-Суу",
+      "dateStart": "25.10.25",
+      "dateEnd": "25.10.25"
+    }
+  ]
+}

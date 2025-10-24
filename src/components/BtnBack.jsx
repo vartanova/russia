@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const BtnBack = ({isPending}) => {
+  const navigate = useNavigate();
+
   return (
-    <button type="button" disabled={isPending}>
+    <button onClick={() => navigate(-1)} type="button" disabled={isPending}>
       <svg
         className="w-[20px] py-1.5 cursor-pointer outline-none focus:underline underline-offset-3 decoration-1 under"
         aria-hidden="true"
