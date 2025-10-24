@@ -18,33 +18,35 @@ const Table = () => {
   });
 
   return (
-    <table className="w-full border rounded-4xl">
-      <thead>
-        {tableInstance.getHeaderGroups().map((headerGroups) => (
-          <tr key={headerGroups.id}>
-            {headerGroups.headers.map((header) => (
-              <th key={header.id}>
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext()
-                )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {tableInstance.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="w-full border solid rounded-sm">
+      <table className="w-full">
+        <thead className="h-14 bg-[#626262]">
+          {tableInstance.getHeaderGroups().map((headerGroups) => (
+            <tr key={headerGroups.id}>
+              {headerGroups.headers.map((header) => (
+                <th key={header.id} className="text-start pl-2.5">
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {tableInstance.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id} className="p-2.5 border-t">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
