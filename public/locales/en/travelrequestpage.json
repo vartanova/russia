@@ -1,4 +1,12 @@
 {
     "title": "Travel Requests",
-    "subtitle": "Manage and track all travel requests submitted by employees"
+    "subtitle": "Manage and track all travel requests submitted by employees",
+    "placeholder": "Search by arrival location, start date, end date...",
+    "columns": {
+        "id": "Request ID",
+        "destination": "Destination",
+        "dateStart": "Start Date",
+        "dateEnd": "End Date"
+    }
+
 }

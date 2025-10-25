@@ -1,18 +1,18 @@
 export const columns = [
   {
-    header: "Request ID",
-    accessorKey: "id",
+    header: "ID Запроса",
+    accessorKey: "id",  
   },
   {
-    header: "Destination",
+    header: "Место прибытия",
     accessorKey: "destination",
   },
   {
-    header: "Start Date",
+    header: "Дата начала",
     accessorKey: "dateStart",
   },
   {
-    header: "End Date",
+    header: "Дата окончания",
     accessorKey: "dateEnd",
   },
 ];

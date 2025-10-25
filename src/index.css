@@ -27,7 +27,23 @@
 }
 
 /* .travel__requests {
-  background-image: url('./assets/requests__bg.PNG');
+  background-image: url('./assets/bg_rquests.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 } */
+
+.travel__requests {
+  color: #4e6813 !important;
+  background-image: url('./assets/mountain_with.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.travel__title {
+  color: #4e6813 !important;
+}
+
+.bg_on {
+  background-image: url('./assets/mountain_without.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -4,9 +4,6 @@ import MainPage from "./pages/MainPage";
 import TravelRequestPage from "./pages/travel/TravelRequestPage";
 
 const App = () => {
-
-  // let navigate = useNavigate();
-
   return (
     <HashRouter>
       <Routes>

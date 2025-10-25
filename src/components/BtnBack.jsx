@@ -17,7 +17,7 @@ const BtnBack = ({isPending}) => {
           stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
-          stroke-width="1"
+          stroke-width="2"
           d="m15 19-7-7 7-7"
         />
       </svg>

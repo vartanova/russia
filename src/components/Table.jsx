@@ -6,8 +6,11 @@ import {
 import React, { useMemo } from "react";
 import db from "../constants/db.json";
 import { columns } from "../constants/columns";
+import { useTranslation } from "react-i18next";
 
 const Table = () => {
+  const { t } = useTranslation("travelrequestpage");  
+  
   const columnDef = useMemo(() => columns, []);
   const data = useMemo(() => db.newtravel, []);
 
@@ -18,9 +21,9 @@ const Table = () => {
   });
 
   return (
-    <div className="w-full border solid rounded-sm">
+    <div className="w-full  rounded-sm">
       <table className="w-full">
-        <thead className="h-14 bg-[#626262]">
+        <thead className="h-14">
           {tableInstance.getHeaderGroups().map((headerGroups) => (
             <tr key={headerGroups.id}>
               {headerGroups.headers.map((header) => (
@@ -36,7 +39,7 @@ const Table = () => {
         </thead>
         <tbody>
           {tableInstance.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <tr key={row.id} className="hover:bg-[#4e6813] hover:cursor-pointer">
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="p-2.5 border-t">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
