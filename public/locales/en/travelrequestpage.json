@@ -7,6 +7,8 @@
         "destination": "Destination",
         "dateStart": "Start Date",
         "dateEnd": "End Date",
+        "actions": "Actions",
+
         "btns": {
             "delete": "Delete",
             "edit": "Edit"

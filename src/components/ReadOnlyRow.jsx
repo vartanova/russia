@@ -28,6 +28,7 @@ const ReadOnlyRow = ({ row, handleEdit, handleDelete }) => {
         </div>
         <div className="p-2.5 border-t">
           <button
+          type="button"
             onClick={() => handleDelete(row.original.id)}
             className="cursor-pointer border rounded-4xl px-4.5 py-1 hover:bg-[#4e6813] max-[884px]:text-xs max-[450px]:text-[8px] max-[450px]:p-2"
           >

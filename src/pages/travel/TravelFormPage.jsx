@@ -64,7 +64,7 @@ const TravelForm = () => {
           setDestination("");
         })
         .catch((error) => {
-          alert("Возникла проблема с запросом: ", error.message);
+          alert("Возникла проблема с запросом: " + error.message);
           setIsPending(false);
         });
     }, 2000);

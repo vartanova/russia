@@ -1,20 +1,14 @@
 {
   "newtravel": [
     {
-      "id": "17f5",
-      "destination": "Медовые водопады",
+      "id": "24a8",
+      "destination": "ааа",
       "dateStart": "11.11.11",
       "dateEnd": "11.11.11"
     },
     {
-      "id": "abf2",
-      "destination": "плато Бермамыт",
-      "dateStart": "11.11.11",
-      "dateEnd": "11.11.11"
-    },
-    {
-      "id": "ff42",
-      "destination": "Джилы-Суу",
+      "id": "acda",
+      "destination": "с",
       "dateStart": "11.11.11",
       "dateEnd": "11.11.11"
     }
