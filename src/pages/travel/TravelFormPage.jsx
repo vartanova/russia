@@ -65,6 +65,7 @@ const TravelForm = () => {
         })
         .catch((error) => {
           alert("Возникла проблема с запросом: ", error.message);
+          setIsPending(false);
         });
     }, 2000);
   };

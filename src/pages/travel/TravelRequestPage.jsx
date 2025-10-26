@@ -17,15 +17,21 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
             <h1
               className={`relative flex items-start font-bold leading-27 ${travel__title} text-9xl mb-4 w-[700px] max-[884px]:text-7xl max-[884px]:leading-16 max-[500px]:text-2xl max-[500px]:mb-0`}
             >
-              <div className="absolute top-1/7 right-1/45 flex items-center justify-center cursor-pointer h-1/3 bg-[#4e6813] rounded-lg transition-all duration-500 ease-in-out w-6 hover:w-35 max-[884px]:top-4/7 max-[884px]:right-75 max-[500px]:top-[126px] max-[500px]:left-[80px] max-[500px]:w-40">
-                <BtnBack />
-              </div>
               {t("title")}
             </h1>
-            <p className="w-1/2 travel__title max-[884px]:w-1/1 max-[500px]:text-xs max-[500px]:w-2/3">{t("subtitle")}</p>
+            <div className="flex items-center  gap-12 w-[700px]">
+              <p className="w-1/2 travel__title max-[884px]:w-1/1 max-[500px]:text-xs max-[500px]:w-2/3">
+                {t("subtitle")}
+              </p>
+              <div className="flex items-center justify-center cursor-pointer bg-[#4e6813] rounded-lg w-35">
+                <BtnBack />
+              </div>
+            </div>
           </div>
         </div>
-        <div className={`h-[170px] flex items-start max-[604px]:items-end max-[500px]:h-[80px] max-[500px]:absolute max-[500px]:top-[100px]`}>
+        <div
+          className={`h-[170px] flex items-start max-[604px]:items-end max-[500px]:h-[80px] max-[500px]:absolute max-[500px]:top-[100px]`}
+        >
           <SwitchLocale travel__title={`${travel__title}`} pt={`${pt}`} />
         </div>
       </div>

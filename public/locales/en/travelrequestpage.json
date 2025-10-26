@@ -6,7 +6,11 @@
         "id": "Request ID",
         "destination": "Destination",
         "dateStart": "Start Date",
-        "dateEnd": "End Date"
+        "dateEnd": "End Date",
+        "btns": {
+            "delete": "Delete",
+            "edit": "Edit"
+        }
     }
 
 }
