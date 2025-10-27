@@ -37,7 +37,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
           <SwitchLocale travel__title={`${travel__title}`} pt={`${pt}`} />
         </div>
       </div>
-      <div className="flex flex-col gap-2 mx-40 p-9 border rounded-4xl backdrop-blur-lg bg-[#52525233] max-[960px]:mx-0 max-[580px]:p-4 max-[580px]:rounded-2xl max-[1140px]:mx-20 min-[1650px]:mx-100">
+      <div className="flex flex-col gap-2 mx-50 p-9 border rounded-4xl backdrop-blur-lg bg-[#52525233] max-[960px]:mx-0 max-[580px]:p-4 max-[580px]:rounded-2xl max-[1140px]:mx-20 min-[1650px]:mx-100">
         <div className="w-full flex items-center rounded-lg bg-[#ffffff20]">
           <div className="pl-2.5">
             <PiMagnifyingGlassThin />
