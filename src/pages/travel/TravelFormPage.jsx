@@ -35,7 +35,7 @@ const TravelForm = () => {
     setTimeout(function () {
       const newTravelObject = { destination, dateStart, dateEnd };
 
-      fetch(`http://localhost:3000/newtravel`, {
+      fetch(`http://localhost:5000/newtravel`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const TravelForm = () => {
       >
         <div className="flex justify-between items-center mb-10 max-sm:mb-5">
           <h1 className="font-bold text-3xl pt-3.5">{t("title")}</h1>
-          <SwitchLocale />
+          <SwitchLocale isPending={isPending}/>
         </div>
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("destination.p")}</p>
