@@ -26,12 +26,6 @@
   font-weight: 700;
 }
 
-/* .travel__requests {
-  background-image: url('./assets/bg_rquests.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
 .travel__requests {
   color: #4e6813 !important;
   background-image: url('./assets/mountain_with.jpg');

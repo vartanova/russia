@@ -1,13 +1,15 @@
 import { t } from "i18next";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../../components/SwitchLocale";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 import Table from "../../components/Table";
 import BtnBack from "../../components/BtnBack";
+import Modal from "../../components/Modal";
 
 const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
   const { t } = useTranslation("travelrequestpage");
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <div className="travel__requests min-h-screen px-14 py-10 pb-20 flex flex-col gap-10 max-[500px]:px-7 max-[500px]:py-7">
@@ -46,8 +48,9 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
             className=" w-full h-10 outline-none px-2.5 placeholder:text-white placeholder:text-xs max-[450px]:text-[8px] max-[450px]:placeholder:text-[8px] max-[450px]:h-6"
           />
         </div>
-        <Table />
+        <Table modalActive={modalActive} setModalActive={setModalActive} />
       </div>
+      <Modal modalActive={modalActive} setModalActive={setModalActive} />
     </div>
   );
 };

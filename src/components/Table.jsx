@@ -9,7 +9,7 @@ import { columns } from "../constants/columns";
 import { useTranslation } from "react-i18next";
 import ReadOnlyRow from "./ReadOnlyRow";
 
-const Table = () => {
+const Table = ({modalActive, setModalActive}) => {
   const { t } = useTranslation("travelrequestpage");
 
   const [rows, setRows] = useState(db.newtravel);
@@ -66,7 +66,7 @@ const Table = () => {
         </thead>
         <tbody>
           {tableInstance.getRowModel().rows.map((row, index) => (
-            <ReadOnlyRow row={row} index={index} handleDelete={handleDelete} />
+            <ReadOnlyRow row={row} index={index} handleDelete={handleDelete} modalActive={modalActive} setModalActive={setModalActive} />
           ))}
         </tbody>
       </table>

@@ -13,6 +13,12 @@
             "delete": "Delete",
             "edit": "Edit"
         }
+    },
+    "editableform": {
+        "title": "Edit your request",
+        "inputs":"Enter a new request...",
+        "btns": {
+            "save": "Save"
+        }
     }
-
 }
