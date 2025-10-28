@@ -3,16 +3,12 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import React, { useMemo, useState, Fragment } from "react";
-import db from "../constants/db.json";
-import { columns } from "../constants/columns";
 import { useTranslation } from "react-i18next";
 import ReadOnlyRow from "./ReadOnlyRow";
 
-const Table = ({modalActive, setModalActive}) => {
+const Table = ({ modalActive, setModalActive, data, columnDef, setRows, handleRowId }) => {
   const { t } = useTranslation("travelrequestpage");
 
-  const [rows, setRows] = useState(db.newtravel);
 
   const handleDelete = async (id) => {
     try {
@@ -27,14 +23,6 @@ const Table = ({modalActive, setModalActive}) => {
     }
   };
 
-  const [editRowId, setEditRowId] = useState(null);
-
-  const handleCancle = () => {
-    setEditRowId(null);
-  };
-
-  const columnDef = useMemo(() => columns, []);
-  const data = useMemo(() => rows, [rows]);
 
   const tableInstance = useReactTable({
     columns: columnDef,
@@ -66,7 +54,14 @@ const Table = ({modalActive, setModalActive}) => {
         </thead>
         <tbody>
           {tableInstance.getRowModel().rows.map((row, index) => (
-            <ReadOnlyRow row={row} index={index} handleDelete={handleDelete} modalActive={modalActive} setModalActive={setModalActive} />
+            <ReadOnlyRow
+              row={row}
+              index={index}
+              handleDelete={handleDelete}
+              modalActive={modalActive}
+              setModalActive={setModalActive}
+              handleRowId={handleRowId}
+            />
           ))}
         </tbody>
       </table>

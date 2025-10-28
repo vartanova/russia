@@ -1,9 +1,16 @@
-import React from "react";
-import { createPortal } from "react-dom";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TfiClose } from "react-icons/tfi";
 
-const Modal = ({ modalActive, setModalActive, children }) => {
+const Modal = ({
+  modalActive,
+  setModalActive,
+  children,
+  handleEditFormSubmit,
+  handleEditForm,
+  editForm,
+  
+}) => {
   const { t } = useTranslation("travelrequestpage");
 
   return (
@@ -39,7 +46,10 @@ const Modal = ({ modalActive, setModalActive, children }) => {
                 {t("editableform.title")}
               </h1>
             </div>
-            <div className="flex flex-col gap-6 mb-10">
+            <form
+              onSubmit={handleEditFormSubmit}
+              className="flex flex-col gap-6 mb-10"
+            >
               <div>
                 <p className="text_dark text-[14px]">
                   {t("columns.destination")}
@@ -47,6 +57,8 @@ const Modal = ({ modalActive, setModalActive, children }) => {
                 <input
                   type="text"
                   name="destination"
+                  value={editForm.destination ?? ""}
+                  onChange={handleEditForm}
                   placeholder={t("editableform.inputs")}
                   className="placeholder-[#2A2C2F] text_dark outline-none border-b border-[#2A2C2F] py-2 w-full"
                 />
@@ -57,7 +69,9 @@ const Modal = ({ modalActive, setModalActive, children }) => {
                 </p>
                 <input
                   type="text"
-                  name="destination"
+                  name="dateStart"
+                  value={editForm.dateStart ?? ""}
+                  onChange={handleEditForm}
                   placeholder={t("editableform.inputs")}
                   className="placeholder-[#2A2C2F] text_dark outline-none border-b border-[#2A2C2F] py-2 w-full"
                 />
@@ -67,16 +81,19 @@ const Modal = ({ modalActive, setModalActive, children }) => {
 
                 <input
                   type="text"
-                  name="destination"
+                  name="dateEnd"
+                  value={editForm.dateEnd ?? ""}
+                  onChange={handleEditForm}
                   placeholder={t("editableform.inputs")}
                   className="placeholder-[#2A2C2F] text_dark outline-none border-b border-[#2A2C2F] py-2 w-full"
                 />
               </div>
-            </div>
+            </form>
             <div className="flex justify-end">
               <button
+                onClick={handleEditFormSubmit}
                 className="bg-[#4e6813] cursor-pointer border rounded-4xl px-4.5 py-1 focus:underline underline-offset-3 decoration-1 under"
-                type="button"
+                type="submit"
               >
                 {t("editableform.btns.save")}
               </button>

@@ -1,10 +1,8 @@
 import { flexRender } from "@tanstack/react-table";
 import { t } from "i18next";
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import db from "../constants/db.json";
 
-const ReadOnlyRow = ({ row, handleDelete, modalActive, setModalActive }) => {
+const ReadOnlyRow = ({ row, handleDelete, handleRowId }) => {
   const { t } = useTranslation("travelrequestpage");
 
   return (
@@ -21,7 +19,7 @@ const ReadOnlyRow = ({ row, handleDelete, modalActive, setModalActive }) => {
       ))}
       <td className="p-2.5 border-t align-middle">
         <div className="flex items-center gap-2.5 max-[700px]:block">
-          <button onClick={() => setModalActive(true)} className="cursor-pointer border rounded-4xl px-4.5 py-1 hover:bg-[#4e6813] max-[884px]:text-xs max-[450px]:text-[8px] max-[450px]:p-2 max-[700px]:mb-2.5 max-[580px]:text-[8px] max-[580px]:mb-1.5">
+          <button onClick={(e) => handleRowId(e, row.original) } className="cursor-pointer border rounded-4xl px-4.5 py-1 hover:bg-[#4e6813] max-[884px]:text-xs max-[450px]:text-[8px] max-[450px]:p-2 max-[700px]:mb-2.5 max-[580px]:text-[8px] max-[580px]:mb-1.5">
             {t("columns.btns.edit")}
           </button>
           <button

@@ -1,15 +1,87 @@
 import { t } from "i18next";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../../components/SwitchLocale";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 import Table from "../../components/Table";
 import BtnBack from "../../components/BtnBack";
 import Modal from "../../components/Modal";
+import { columns } from "../../constants/columns";
+import db from "../../constants/db.json";
 
 const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
   const { t } = useTranslation("travelrequestpage");
   const [modalActive, setModalActive] = useState(false);
+
+  const [rows, setRows] = useState(db.newtravel);
+
+  const [editRowId, setEditRowId] = useState(null);
+  const columnDef = useMemo(() => columns, []);
+  const data = useMemo(() => rows, [rows]);
+
+  const [editForm, setEditForm] = useState({
+    destination: "",
+    dateStart: "",
+    dateEnd: "",
+  });
+
+  const handleRowId = (e, row) => {
+    e.preventDefault();
+    setEditRowId(row.id);
+
+    setEditForm({
+      destination: row.destination,
+      dateStart: row.dateStart,
+      dateEnd: row.dateEnd,
+    });
+    setModalActive(true);
+  };
+  const handleEditForm = (e) => {
+    e.preventDefault();
+
+    const nameOfForm = e.target.name;
+    const valueOfForm = e.target.value;
+
+    const newFormData = { ...editForm };
+    newFormData[nameOfForm] = valueOfForm;
+
+    setEditForm(newFormData);
+  };
+
+  const handleEditFormSubmit = async (e) => {
+    e.preventDefault();
+
+    const editedRow = {
+      id: editRowId,
+      destination: editForm.destination,
+      dateStart: editForm.dateStart,
+      dateEnd: editForm.dateEnd,
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/newtravel/${editRowId}`,
+        {
+          method: "put",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(editedRow),
+        }
+      );
+      if (!response.ok) throw new Error("Ошибка при редактировании");
+
+      const newRow = [...rows];
+
+      const index = rows.findIndex((row) => row.id === editRowId);
+
+      newRow[index] = editedRow;
+
+      setRows(newRow);
+      setEditRowId(null);
+      alert("Поездка отредактирована");
+    } catch (error) {
+      alert("Не удалось отредактировать поездку: " + error.message);
+    }
+  };
 
   return (
     <div className="travel__requests min-h-screen px-14 py-10 pb-20 flex flex-col gap-10 max-[500px]:px-7 max-[500px]:py-7">
@@ -48,9 +120,23 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
             className=" w-full h-10 outline-none px-2.5 placeholder:text-white placeholder:text-xs max-[450px]:text-[8px] max-[450px]:placeholder:text-[8px] max-[450px]:h-6"
           />
         </div>
-        <Table modalActive={modalActive} setModalActive={setModalActive} />
+        <Table
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+          setRows={setRows}
+          columnDef={columnDef}
+          data={data}
+          handleRowId={handleRowId}
+        />
       </div>
-      <Modal modalActive={modalActive} setModalActive={setModalActive} />
+      <Modal
+        setRows={setRows}
+        editForm={editForm}
+        handleEditForm={handleEditForm}
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        handleEditFormSubmit={handleEditFormSubmit}
+      />
     </div>
   );
 };

@@ -10,6 +10,6 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
-createPortal(document.getElementById('portal')).render(
-  <Modal />
-)
+// createPortal(document.getElementById('portal')).render(
+//   <Modal />
+// )
