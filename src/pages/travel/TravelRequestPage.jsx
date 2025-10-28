@@ -49,7 +49,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
   };
 
   const handleEditFormSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const editedRow = {
       id: editRowId,
@@ -67,6 +67,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
           body: JSON.stringify(editedRow),
         }
       );
+
       if (!response.ok) throw new Error("Ошибка при редактировании");
 
       const newRow = [...rows];
@@ -78,6 +79,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
       setRows(newRow);
       setEditRowId(null);
       alert("Поездка отредактирована");
+      setModalActive(false)
     } catch (error) {
       alert("Не удалось отредактировать поездку: " + error.message);
     }

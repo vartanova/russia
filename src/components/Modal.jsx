@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TfiClose } from "react-icons/tfi";
+import { schema } from "../pages/travel/travelSchema";
+import { applyDateMask } from "../pages/travel/dateMask";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Modal = ({
   modalActive,
@@ -9,9 +13,23 @@ const Modal = ({
   handleEditFormSubmit,
   handleEditForm,
   editForm,
-  
 }) => {
   const { t } = useTranslation("travelrequestpage");
+  const { t: tError } = useTranslation("error");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema(tError)),
+  });
+  console.log("errors", errors);
+  const [dateStart, setDateStart] = useState();
+  const [dateEnd, setDateEnd] = useState();
+  const [destination, setDestination] = useState();
 
   return (
     <>
@@ -47,7 +65,7 @@ const Modal = ({
               </h1>
             </div>
             <form
-              onSubmit={handleEditFormSubmit}
+              onSubmit={handleSubmit(handleEditFormSubmit)}
               className="flex flex-col gap-6 mb-10"
             >
               <div>
@@ -58,10 +76,20 @@ const Modal = ({
                   type="text"
                   name="destination"
                   value={editForm.destination ?? ""}
-                  onChange={handleEditForm}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    e.target.value = val
+                    handleEditForm(e);
+                    setDestination(val);
+                    setValue("destination", val);
+
+                  }}
                   placeholder={t("editableform.inputs")}
                   className="placeholder-[#2A2C2F] text_dark outline-none border-b border-[#2A2C2F] py-2 w-full"
                 />
+                <p className="error pt-2 text-xs italic max-w-[260px]">
+                  {errors.destination?.message}
+                </p>
               </div>
               <div>
                 <p className="text_dark text-[14px]">
@@ -71,10 +99,19 @@ const Modal = ({
                   type="text"
                   name="dateStart"
                   value={editForm.dateStart ?? ""}
-                  onChange={handleEditForm}
+                  onChange={(e) => {
+                    const masked = applyDateMask(e.target.value);
+                    e.target.value = masked;
+                    handleEditForm(e);
+                    setDateStart(masked);
+                    setValue("dateStart", masked);
+                  }}
                   placeholder={t("editableform.inputs")}
                   className="placeholder-[#2A2C2F] text_dark outline-none border-b border-[#2A2C2F] py-2 w-full"
                 />
+                <p className="error pt-2 text-xs italic max-w-[260px]">
+                  {errors.dateStart?.message}
+                </p>
               </div>
               <div>
                 <p className="text_dark text-[14px]">{t("columns.dateEnd")}</p>
@@ -83,21 +120,27 @@ const Modal = ({
                   type="text"
                   name="dateEnd"
                   value={editForm.dateEnd ?? ""}
-                  onChange={handleEditForm}
+                  onChange={(e) => {
+                    const masked = applyDateMask(e.target.value);
+                    e.target.value = masked;
+                    handleEditForm(e);
+                    setDateEnd(masked);
+                    setValue("dateEnd", masked);
+                  }}
                   placeholder={t("editableform.inputs")}
                   className="placeholder-[#2A2C2F] text_dark outline-none border-b border-[#2A2C2F] py-2 w-full"
                 />
+                <p className="error pt-2 text-xs italic max-w-[260px]">
+                  {errors.dateEnd?.message}
+                </p>
               </div>
-            </form>
-            <div className="flex justify-end">
               <button
-                onClick={handleEditFormSubmit}
                 className="bg-[#4e6813] cursor-pointer border rounded-4xl px-4.5 py-1 focus:underline underline-offset-3 decoration-1 under"
                 type="submit"
               >
                 {t("editableform.btns.save")}
               </button>
-            </div>
+            </form>
             {children}
           </div>
         </div>
