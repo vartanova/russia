@@ -9,6 +9,8 @@ import Modal from "../../components/Modal";
 import { columns } from "../../constants/columns";
 import db from "../../constants/db.json";
 
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
   const { t } = useTranslation("travelrequestpage");
   const [modalActive, setModalActive] = useState(false);
@@ -60,7 +62,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/newtravel/${editRowId}`,
+        `${BASE_URL}/newtravel/${editRowId}`,
         {
           method: "put",
           headers: { "Content-Type": "application/json" },
