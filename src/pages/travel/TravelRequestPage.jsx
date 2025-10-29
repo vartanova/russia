@@ -79,7 +79,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
       setRows(newRow);
       setEditRowId(null);
       alert("Поездка отредактирована");
-      setModalActive(false)
+      setModalActive(false);
     } catch (error) {
       alert("Не удалось отредактировать поездку: " + error.message);
     }
@@ -131,14 +131,16 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
           handleRowId={handleRowId}
         />
       </div>
-      <Modal
-        setRows={setRows}
-        editForm={editForm}
-        handleEditForm={handleEditForm}
-        modalActive={modalActive}
-        setModalActive={setModalActive}
-        handleEditFormSubmit={handleEditFormSubmit}
-      />
+      {modalActive && (
+        <Modal
+          setRows={setRows}
+          editForm={editForm}
+          handleEditForm={handleEditForm}
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+          handleEditFormSubmit={handleEditFormSubmit}
+        />
+      )}
     </div>
   );
 };
