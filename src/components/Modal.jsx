@@ -135,7 +135,7 @@ const Modal = ({
                 </p>
               </div>
               <button
-                className="bg-[#4e6813] cursor-pointer border rounded-4xl px-4.5 py-1 focus:underline underline-offset-3 decoration-1 under"
+                className="bg-[#4e6813] cursor-pointer border rounded-4xl px-4.5 py-1"
                 type="submit"
               >
                 {t("editableform.btns.save")}
