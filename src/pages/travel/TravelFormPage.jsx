@@ -75,6 +75,7 @@ const TravelForm = () => {
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
+      
       <form
         onSubmit={handleSubmit(onSubmit)}
         id="form"

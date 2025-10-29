@@ -14,6 +14,9 @@ const MainPage = () => {
 
   return (
     <div className="bg-[#2A2C2F]">
+      {/* {(() => {
+        throw new Error("Тестовая ошибка");
+      })()} */}
       <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
         <Header />
         <Lead />
