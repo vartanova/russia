@@ -8,12 +8,13 @@ import SwitchLocale from "../../components/SwitchLocale";
 import BtnBack from "../../components/BtnBack";
 import { schema } from "./travelSchema";
 import { applyDateMask } from "./dateMask";
+import { ToastContainer, Slide, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const TravelForm = () => {
   const { t } = useTranslation("travelpage");
-
   const { t: tError } = useTranslation("error");
 
   const {
@@ -30,7 +31,7 @@ const TravelForm = () => {
   const [dateStart, setDateStart] = useState();
   const [dateEnd, setDateEnd] = useState();
   const [isPending, setIsPending] = useState(false);
-  
+
   const onSubmit = (e) => {
     // e.preventDefault() почему то с этим все ломается
     setIsPending(true);
@@ -58,7 +59,7 @@ const TravelForm = () => {
         .then((json) => {
           console.log("json:", json);
 
-          alert("Ваша поездка создана");
+          toast.success("Ваша поездка создана!");
           setIsPending(false);
           reset();
           setDateStart("");
@@ -66,7 +67,7 @@ const TravelForm = () => {
           setDestination("");
         })
         .catch((error) => {
-          alert("Возникла проблема с запросом: " + error.message);
+          toast.error("Возникла проблема с запросом");
           setIsPending(false);
         });
     }, 2000);
@@ -168,6 +169,11 @@ const TravelForm = () => {
           </button>
         </div>
       </form>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        transition={Slide}
+      />
     </div>
   );
 };

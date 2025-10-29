@@ -8,6 +8,8 @@ import BtnBack from "../../components/BtnBack";
 import Modal from "../../components/Modal";
 import { columns } from "../../constants/columns";
 import db from "../../constants/db.json";
+import { ToastContainer, Slide, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -61,14 +63,11 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
     };
 
     try {
-      const response = await fetch(
-        `${BASE_URL}/newtravel/${editRowId}`,
-        {
-          method: "put",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(editedRow),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/newtravel/${editRowId}`, {
+        method: "put",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editedRow),
+      });
 
       if (!response.ok) throw new Error("Ошибка при редактировании");
 
@@ -80,10 +79,10 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
 
       setRows(newRow);
       setEditRowId(null);
-      alert("Поездка отредактирована");
+      toast.success("Поездка отредактирована!");
       setModalActive(false);
     } catch (error) {
-      alert("Не удалось отредактировать поездку: " + error.message);
+      toast.error("Не удалось отредактировать поездку: " + error.message);
     }
   };
 
@@ -143,6 +142,11 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
           handleEditFormSubmit={handleEditFormSubmit}
         />
       )}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        transition={Slide}
+      />
     </div>
   );
 };
