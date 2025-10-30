@@ -14,9 +14,9 @@ Open [http://localhost:5173/](http://localhost:5173/) to see the result.
 The page will reload when you make changes.<br/>
 You may also see any lint errors in the console.<br/>
 
-Let's run [json-server](https://www.npmjs.com/package/json-server) on a separate port so that we can save queries to the database: <br/>
+Let's run [json-server](https://www.npmjs.com/package/json-server) so that we can save queries to the database: <br/>
 
-```npx json-server --watch src/constants/db.json --port 5000```
+```npm run server```
 
 Fake API routes can be accessed on [http://localhost:5000/newtravel](http://localhost:5000/newtravel). This endpoint can be edited in ```src/constants/db.json```.
 
@@ -28,3 +28,4 @@ Fake API routes can be accessed on [http://localhost:5000/newtravel](http://loca
 -
 The easiest way to deploy your React app is to use the [Vercel Platform](https://vercel.com/). <br/>
 Check out detailed [documentation](https://vercel.com/guides/deploying-react-with-vercel) on how to deploy to Vercel.
+
