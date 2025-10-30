@@ -1,6 +1,10 @@
 {
     "errorRequired": "Required input field",
     "errorDate": "Invalid date format DD.MM.YY",
-    "errorMatch": "The end date cannot be less than the start date of the trip."
+    "errorMatch": "The end date cannot be less than the start date of the trip.",
+    "errorpage": {
+        "oops": "Oops...",
+        "title": "Something went wrong:"
+    }
 
 }

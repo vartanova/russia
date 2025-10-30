@@ -5,10 +5,18 @@ import {
 } from "@tanstack/react-table";
 import { useTranslation } from "react-i18next";
 import ReadOnlyRow from "./ReadOnlyRow";
+import { ToastContainer, Slide, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Table = ({ modalActive, setModalActive, data, columnDef, setRows, handleRowId }) => {
+const Table = ({
+  modalActive,
+  setModalActive,
+  data,
+  columnDef,
+  setRows,
+  handleRowId,
+}) => {
   const { t } = useTranslation("travelrequestpage");
-
 
   const handleDelete = async (id) => {
     try {
@@ -19,10 +27,9 @@ const Table = ({ modalActive, setModalActive, data, columnDef, setRows, handleRo
 
       setRows((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
-      alert("Возникла проблема с запросом:", error);
+      toast.error("Возникла проблема с запросом:" + error.message);
     }
   };
-
 
   const tableInstance = useReactTable({
     columns: columnDef,
@@ -65,6 +72,11 @@ const Table = ({ modalActive, setModalActive, data, columnDef, setRows, handleRo
           ))}
         </tbody>
       </table>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        transition={Slide}
+      />
     </div>
   );
 };

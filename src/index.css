@@ -7,13 +7,13 @@
 }
 
 .uppercase.text-xs {
-  color: #AAAAAA;
+  color: #aaaaaa;
 }
 
 .travel {
   height: auto;
   max-height: fit-content;
-  background-image: url('./assets/travelRequestBg.jpg');
+  background-image: url("./assets/travelRequestBg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   /* background-position: center; */
@@ -28,7 +28,7 @@
 
 .travel__requests {
   color: #4e6813 !important;
-  background-image: url('./assets/mountain_with.jpg');
+  background-image: url("./assets/mountain_with.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -36,12 +36,16 @@
   color: #4e6813 !important;
 }
 
-.bg_on {
-  background-image: url('./assets/mountain_without.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+.text_dark {
+  color: #2a2c2f;
 }
 
-.text_dark {
-  color: #2A2C2F;
+.page__error {
+  height: auto;
+  max-height: fit-content;
+  font-weight: bold;
+  padding: 150px;
+  display: flex;
+  flex-direction: column;
+
 }
