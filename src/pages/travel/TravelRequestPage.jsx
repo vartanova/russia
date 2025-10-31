@@ -1,10 +1,10 @@
 import { t } from "i18next";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../../components/SwitchLocale";
 import { PiMagnifyingGlassThin } from "react-icons/pi";
 import Table from "../../components/Table";
-import BtnBack from "../../components/BtnBack";
+import ButtonBack from "../../components/ButtonBack";
 import Modal from "../../components/Modal";
 import { columns } from "../../constants/columns";
 import db from "../../constants/db.json";
@@ -15,14 +15,10 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 
 const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
   const { t } = useTranslation("travelrequestpage");
+
   const [modalActive, setModalActive] = useState(false);
-
   const [rows, setRows] = useState(db.newtravel);
-
   const [editRowId, setEditRowId] = useState(null);
-  const columnDef = useMemo(() => columns, []);
-  const data = useMemo(() => rows, [rows]);
-
   const [editForm, setEditForm] = useState({
     destination: "",
     dateStart: "",
@@ -52,14 +48,12 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
     setEditForm(newFormData);
   };
 
-  const handleEditFormSubmit = async (e) => {
-    // e.preventDefault();
-
+  const handleEditFormSubmit = async (data) => {
     const editedRow = {
       id: editRowId,
-      destination: editForm.destination,
-      dateStart: editForm.dateStart,
-      dateEnd: editForm.dateEnd,
+      destination: data.destination,
+      dateStart: data.dateStart,
+      dateEnd: data.dateEnd,
     };
 
     try {
@@ -101,7 +95,7 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
                 {t("subtitle")}
               </p>
               <div className="flex items-center justify-center cursor-pointer bg-[#4e6813] rounded-lg w-35 max">
-                <BtnBack />
+                <ButtonBack />
               </div>
             </div>
           </div>
@@ -127,8 +121,8 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
           modalActive={modalActive}
           setModalActive={setModalActive}
           setRows={setRows}
-          columnDef={columnDef}
-          data={data}
+          columnDef={columns}
+          data={rows}
           handleRowId={handleRowId}
         />
       </div>

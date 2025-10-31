@@ -5,7 +5,7 @@ import TravelPurpose from "./TravelPurpose";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SwitchLocale from "../../components/SwitchLocale";
-import BtnBack from "../../components/BtnBack";
+import ButtonBack from "../../components/ButtonBack";
 import { schema } from "./travelSchema";
 import { applyDateMask } from "./dateMask";
 import { ToastContainer, Slide, toast } from "react-toastify";
@@ -35,47 +35,44 @@ const TravelForm = () => {
   const onSubmit = (e) => {
     // e.preventDefault() почему то с этим все ломается
     setIsPending(true);
-    setTimeout(function () {
-      const newTravelObject = { destination, dateStart, dateEnd };
+    const newTravelObject = { destination, dateStart, dateEnd };
 
-      fetch(`${BASE_URL}/newtravel`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...newTravelObject,
-        }),
+    fetch(`${BASE_URL}/newtravel`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...newTravelObject,
+      }),
+    })
+      .then((response) => {
+        console.log("response:", response);
+
+        if (!response.ok) {
+          throw new Error("Не удалось создать поездку");
+        }
+
+        return response.json();
       })
-        .then((response) => {
-          console.log("response:", response);
+      .then((json) => {
+        console.log("json:", json);
 
-          if (!response.ok) {
-            throw new Error("Не удалось создать поездку");
-          }
-
-          return response.json();
-        })
-        .then((json) => {
-          console.log("json:", json);
-
-          toast.success("Ваша поездка создана!");
-          setIsPending(false);
-          reset();
-          setDateStart("");
-          setDateEnd("");
-          setDestination("");
-        })
-        .catch((error) => {
-          toast.error("Возникла проблема с запросом");
-          setIsPending(false);
-        });
-    }, 2000);
+        toast.success("Ваша поездка создана!");
+        setIsPending(false);
+        reset();
+        setDateStart("");
+        setDateEnd("");
+        setDestination("");
+      })
+      .catch((error) => {
+        toast.error("Возникла проблема с запросом");
+        setIsPending(false);
+      });
   };
 
   return (
     <div className="travel min-h-screen px-12 py-10 pb-20 flex flex-col items-center">
-      
       <form
         onSubmit={handleSubmit(onSubmit)}
         id="form"
@@ -157,7 +154,7 @@ const TravelForm = () => {
         </div>
         <div className="flex justify-between items-center">
           <Link to="/">
-            <BtnBack isPending={isPending} />
+            <ButtonBack isPending={isPending} />
           </Link>
           <button
             type="submit"

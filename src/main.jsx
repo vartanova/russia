@@ -6,9 +6,7 @@ import "./i18n.js";
 import { ErrorBoundary } from "react-error-boundary";
 import error_bg from "./assets/error_bg.png";
 
-import BtnBack from "./components/BtnBack.jsx";
-
-const fallbackRender = ({ error, resetErrorBoundary }) => {
+const fallbackRender = ({ error }) => {
   console.log("error", error);
 
   return (
@@ -23,8 +21,6 @@ const fallbackRender = ({ error, resetErrorBoundary }) => {
         <pre className="text-xl max-[960px]:text-md max-[740px]:text-xs">
           {error.message}
         </pre>
-
-        {/* <BtnBack /> */}
       </div>
       <img src={error_bg} className="absolute bottom-0 right-0 z-0 blur-sm" />
     </div>

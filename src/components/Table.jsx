@@ -1,7 +1,6 @@
 import {
   useReactTable,
   getCoreRowModel,
-  flexRender,
 } from "@tanstack/react-table";
 import { useTranslation } from "react-i18next";
 import ReadOnlyRow from "./ReadOnlyRow";
@@ -17,10 +16,11 @@ const Table = ({
   handleRowId,
 }) => {
   const { t } = useTranslation("travelrequestpage");
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/newtravel/${id}`, {
+      const response = await fetch(`${BASE_URL}/newtravel/${id}`, {
         method: "delete",
       });
       if (!response.ok) throw new Error("Не удалось удалить поездку");

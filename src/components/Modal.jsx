@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TfiClose } from "react-icons/tfi";
 import { schema } from "../pages/travel/travelSchema";
@@ -9,7 +9,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const Modal = ({
   modalActive,
   setModalActive,
-  children,
   handleEditFormSubmit,
   handleEditForm,
   editForm,
@@ -19,11 +18,10 @@ const Modal = ({
 
   const {
     handleSubmit,
-    reset,
     setValue,
     formState: { errors },
   } = useForm({
-    values: editForm,
+    defaultValues: editForm,
     resolver: yupResolver(schema(tError)),
   });
   console.log("errors", errors);
