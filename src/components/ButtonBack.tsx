@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import type { SwitchLocaleProps } from "./SwitchLocale";
 
-const BtnBack = ({isPending}) => {
+
+const BtnBack = ({isPending}: SwitchLocaleProps) => {
   const navigate = useNavigate();
 
   return (

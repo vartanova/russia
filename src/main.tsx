@@ -1,12 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
+import App from "./App.js";
 import "./i18n.js";
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import error_bg from "./assets/error_bg.png";
 
-const fallbackRender = ({ error }) => {
+const fallbackRender = ({ error }: FallbackProps) => {
   console.log("error", error);
 
   return (
@@ -19,7 +19,7 @@ const fallbackRender = ({ error }) => {
           Что-то пошло <br /> не так:
         </h1>
         <pre className="text-xl max-[960px]:text-md max-[740px]:text-xs">
-          {error.message}
+          {error?.message}
         </pre>
       </div>
       <img src={error_bg} className="absolute bottom-0 right-0 z-0 blur-sm" />
@@ -27,7 +27,7 @@ const fallbackRender = ({ error }) => {
   );
 };
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary fallbackRender={fallbackRender}>
       <App />

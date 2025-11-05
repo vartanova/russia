@@ -11,23 +11,43 @@ import db from "../../constants/db.json";
 import { ToastContainer, Slide, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+type TravelRequestPageProps = {
+  pt?: string;
+  travel__title?: string;
+};
+
+export interface IRow {
+  id?: string;
+  destination: string;
+  dateStart: string;
+  dateEnd: string;
+}
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
+const TravelRequestPage = ({
+  travel__title = "travel__title",
+  pt,
+}: TravelRequestPageProps) => {
   const { t } = useTranslation("travelrequestpage");
 
-  const [modalActive, setModalActive] = useState(false);
-  const [rows, setRows] = useState(db.newtravel);
-  const [editRowId, setEditRowId] = useState(null);
-  const [editForm, setEditForm] = useState({
+  const [modalActive, setModalActive] = useState<boolean>(false);
+  const [rows, setRows] = useState<IRow[]>(
+    (db.newtravel as unknown) as IRow[]
+  );
+  const [editRowId, setEditRowId] = useState<string | null>(null);
+  const [editForm, setEditForm] = useState<Omit<IRow, "id">>({
     destination: "",
     dateStart: "",
     dateEnd: "",
   });
 
-  const handleRowId = (e, row) => {
-    e.preventDefault();
-    setEditRowId(row.id);
+  const handleRowId = (
+    // e: React.ChangeEvent<HTMLTableRowElement>,
+    row: IRow
+  ) => {
+    // e.preventDefault();
+    setEditRowId(String(row.id));
 
     setEditForm({
       destination: row.destination,
@@ -36,10 +56,10 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
     });
     setModalActive(true);
   };
-  const handleEditForm = (e) => {
+  const handleEditForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    const nameOfForm = e.target.name;
+    const nameOfForm = e.target.name as keyof typeof editForm;
     const valueOfForm = e.target.value;
 
     const newFormData = { ...editForm };
@@ -48,9 +68,9 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
     setEditForm(newFormData);
   };
 
-  const handleEditFormSubmit = async (data) => {
-    const editedRow = {
-      id: editRowId,
+  const handleEditFormSubmit = async (data: Omit<IRow, "id">) => {
+    const editedRow: IRow = {
+      id: editRowId!,
       destination: data.destination,
       dateStart: data.dateStart,
       dateEnd: data.dateEnd,
@@ -76,7 +96,8 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
       toast.success("Поездка отредактирована!");
       setModalActive(false);
     } catch (error) {
-      toast.error("Не удалось отредактировать поездку: " + error.message);
+      if (error instanceof Error)
+        toast.error("Не удалось отредактировать поездку: " + error.message);
     }
   };
 
@@ -128,7 +149,6 @@ const TravelRequestPage = ({ travel__title = "travel__title", pt }) => {
       </div>
       {modalActive && (
         <Modal
-          setRows={setRows}
           editForm={editForm}
           handleEditForm={handleEditForm}
           modalActive={modalActive}

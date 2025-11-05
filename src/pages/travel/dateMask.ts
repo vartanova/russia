@@ -1,5 +1,5 @@
 
-export function applyDateMask(value) {
+export function applyDateMask(value:string) {
   if (!value) return "";
 
   value = value.replace(/\D/g, "");

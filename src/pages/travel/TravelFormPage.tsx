@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TravelPurpose from "./TravelPurpose";
@@ -27,12 +27,12 @@ const TravelForm = () => {
     resolver: yupResolver(schema(tError)),
   });
 
-  const [destination, setDestination] = useState();
-  const [dateStart, setDateStart] = useState();
-  const [dateEnd, setDateEnd] = useState();
-  const [isPending, setIsPending] = useState(false);
+  const [destination, setDestination] = useState<string>();
+  const [dateStart, setDateStart] = useState<string>();
+  const [dateEnd, setDateEnd] = useState<string>();
+  const [isPending, setIsPending] = useState<boolean>(false);
 
-  const onSubmit = (e) => {
+  const onSubmit = () => {
     // e.preventDefault() почему то с этим все ломается
     setIsPending(true);
     const newTravelObject = { destination, dateStart, dateEnd };
@@ -85,8 +85,8 @@ const TravelForm = () => {
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("destination.p")}</p>
           <input
-            name="destination"
             {...register("destination")}
+            name="destination"
             onChange={(e) => {
               const val = e.target.value;
               setDestination(val);
@@ -104,10 +104,10 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("datestart.p")}</p>
             <input
               type="text"
-              name="dateStart"
               value={dateStart || ""}
               placeholder={t("datestart.placeholder")}
               {...register("dateStart")}
+              name="dateStart"
               onChange={(e) => {
                 const masked = applyDateMask(e.target.value);
                 setDateStart(masked);
@@ -123,10 +123,10 @@ const TravelForm = () => {
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
               type="text"
-              name="dateEnd"
               value={dateEnd || ""}
               placeholder={t("dateend.placeholder")}
               {...register("dateEnd")}
+              name="dateEnd"
               onChange={(e) => {
                 const masked = applyDateMask(e.target.value);
                 setDateEnd(masked);
@@ -146,7 +146,6 @@ const TravelForm = () => {
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("notes.p")}</p>
           <textarea
-            type="text"
             name="notes"
             className="bg-[#ffffff68] resize-none  w-full break-all border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
             placeholder={t("notes.placeholder")}

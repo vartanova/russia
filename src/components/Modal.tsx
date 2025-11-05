@@ -5,6 +5,15 @@ import { schema } from "../pages/travel/travelSchema";
 import { applyDateMask } from "../pages/travel/dateMask";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { IRow } from "../pages/travel/TravelRequestPage";
+
+type ModalProps = {
+  modalActive: boolean;
+  editForm: IRow;
+  setModalActive: (value: boolean) => void;
+  handleEditFormSubmit: (data: Omit<IRow, "id">) => void;
+  handleEditForm: (value: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 const Modal = ({
   modalActive,
@@ -12,7 +21,7 @@ const Modal = ({
   handleEditFormSubmit,
   handleEditForm,
   editForm,
-}) => {
+}: ModalProps) => {
   const { t } = useTranslation("travelrequestpage");
   const { t: tError } = useTranslation("error");
 
@@ -25,9 +34,9 @@ const Modal = ({
     resolver: yupResolver(schema(tError)),
   });
   console.log("errors", errors);
-  const [dateStart, setDateStart] = useState();
-  const [dateEnd, setDateEnd] = useState();
-  const [destination, setDestination] = useState();
+  const [dateStart, setDateStart] = useState<string>();
+  const [dateEnd, setDateEnd] = useState<string>();
+  const [destination, setDestination] = useState<string>();
 
   return (
     <>

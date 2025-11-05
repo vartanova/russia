@@ -1,24 +1,29 @@
-import {
-  useReactTable,
-  getCoreRowModel,
-} from "@tanstack/react-table";
+import { useReactTable, getCoreRowModel, ColumnDef } from "@tanstack/react-table";
 import { useTranslation } from "react-i18next";
 import ReadOnlyRow from "./ReadOnlyRow";
 import { ToastContainer, Slide, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IRow } from "../pages/travel/TravelRequestPage";
+
+type TableProps = {
+  modalActive: boolean;
+  data: IRow[];
+  columnDef: ColumnDef<IRow>[];
+  setModalActive: (value: boolean) => void;
+  setRows: React.Dispatch<React.SetStateAction<IRow[]>>;
+  handleRowId: (row: IRow) => void;
+};
 
 const Table = ({
-  modalActive,
-  setModalActive,
   data,
   columnDef,
   setRows,
   handleRowId,
-}) => {
+}: TableProps) => {
   const { t } = useTranslation("travelrequestpage");
   const BASE_URL = import.meta.env.VITE_API_URL;
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`${BASE_URL}/newtravel/${id}`, {
         method: "delete",
@@ -27,7 +32,8 @@ const Table = ({
 
       setRows((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
-      toast.error("Возникла проблема с запросом:" + error.message);
+      if (error instanceof Error)
+        toast.error("Возникла проблема с запросом:" + error.message);
     }
   };
 
@@ -63,10 +69,7 @@ const Table = ({
           {tableInstance.getRowModel().rows.map((row, index) => (
             <ReadOnlyRow
               row={row}
-              index={index}
               handleDelete={handleDelete}
-              modalActive={modalActive}
-              setModalActive={setModalActive}
               handleRowId={handleRowId}
             />
           ))}

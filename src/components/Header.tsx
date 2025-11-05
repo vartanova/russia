@@ -1,8 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import logo from "./../assets/__logo.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SwitchLocale from "./SwitchLocale";
+
 
 const Header = () => {
   const navigate = useNavigate();

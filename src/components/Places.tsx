@@ -2,10 +2,9 @@ import React from "react";
 import { places } from "../assets/places";
 import { useTranslation } from "react-i18next";
 
-
 const Places = () => {
-    const { t } = useTranslation("places");
-  
+  const { t } = useTranslation("places");
+
   return (
     <div>
       {places.map((place, index) => (
@@ -32,7 +31,7 @@ const Places = () => {
           />
           <div className="flex flex-col gap-[26px]">
             <div>{t(place.text1)}</div>
-            {t(place.text2)}
+            {t(place.text2 ?? "")}
           </div>
         </div>
       ))}

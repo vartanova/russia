@@ -1,7 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const SwitchLocale = ({ travel__title, pt = "pt-3.5", isPending }) => {
+export type SwitchLocaleProps = {
+  travel__title?: string,
+  pt?: string,
+  isPending?: boolean
+}
+
+const SwitchLocale = ({ travel__title, pt = "pt-3.5", isPending }: SwitchLocaleProps) => {
   const { i18n } = useTranslation();
  
   const handleChangeLang = () => {
