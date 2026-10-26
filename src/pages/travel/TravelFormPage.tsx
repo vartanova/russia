@@ -1,74 +1,62 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TravelPurpose from "./TravelPurpose";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ToastContainer, Slide, toast } from "react-toastify";
+
+import TravelPurpose from "./TravelPurpose";
 import SwitchLocale from "../../components/SwitchLocale";
 import ButtonBack from "../../components/ButtonBack";
 import { schema } from "./travelSchema";
 import { applyDateMask } from "./dateMask";
-import { ToastContainer, Slide, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { createTravelRequest } from "../../api/travel";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+type TravelFormValues = {
+  destination: string;
+  dateStart: string;
+  dateEnd: string;
+};
 
 const TravelForm = () => {
   const { t } = useTranslation("travelpage");
   const { t: tError } = useTranslation("error");
+
+  const [isPending, setIsPending] = useState(false);
 
   const {
     register,
     handleSubmit,
     reset,
     setValue,
+    watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<TravelFormValues>({
     resolver: yupResolver(schema(tError)),
+    defaultValues: {
+      destination: "",
+      dateStart: "",
+      dateEnd: "",
+    },
   });
 
-  const [destination, setDestination] = useState<string>();
-  const [dateStart, setDateStart] = useState<string>();
-  const [dateEnd, setDateEnd] = useState<string>();
-  const [isPending, setIsPending] = useState<boolean>(false);
+  const dateStart = watch("dateStart");
+  const dateEnd = watch("dateEnd");
 
-  const onSubmit = () => {
-    // e.preventDefault() почему то с этим все ломается
+  const onSubmit = async (data: TravelFormValues) => {
     setIsPending(true);
-    const newTravelObject = { destination, dateStart, dateEnd };
 
-    fetch(`${BASE_URL}/newtravel`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...newTravelObject,
-      }),
-    })
-      .then((response) => {
-        console.log("response:", response);
+    try {
+      await createTravelRequest(data);
 
-        if (!response.ok) {
-          throw new Error("Не удалось создать поездку");
-        }
-
-        return response.json();
-      })
-      .then((json) => {
-        console.log("json:", json);
-
-        toast.success("Ваша поездка создана!");
-        setIsPending(false);
-        reset();
-        setDateStart("");
-        setDateEnd("");
-        setDestination("");
-      })
-      .catch((error) => {
-        toast.error("Возникла проблема с запросом");
-        setIsPending(false);
-      });
+      toast.success("Ваша поездка создана!");
+      reset();
+    } catch (error) {
+      console.error("Ошибка создания поездки:", error);
+      toast.error("Возникла проблема с запросом");
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -82,15 +70,11 @@ const TravelForm = () => {
           <h1 className="font-bold text-3xl pt-3.5">{t("title")}</h1>
           <SwitchLocale isPending={isPending} />
         </div>
+
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("destination.p")}</p>
           <input
             {...register("destination")}
-            name="destination"
-            onChange={(e) => {
-              const val = e.target.value;
-              setDestination(val);
-            }}
             type="text"
             placeholder={t("destination.placeholder")}
             className="bg-[#ffffff68] w-full h-10 border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
@@ -99,6 +83,7 @@ const TravelForm = () => {
             {errors.destination?.message}
           </p>
         </div>
+
         <div className="mb-7 flex gap-5 max-md:flex-col max-sm:gap-2.5 max-sm:mb-5">
           <div>
             <p className="pb-2.5">{t("datestart.p")}</p>
@@ -107,11 +92,13 @@ const TravelForm = () => {
               value={dateStart || ""}
               placeholder={t("datestart.placeholder")}
               {...register("dateStart")}
-              name="dateStart"
               onChange={(e) => {
                 const masked = applyDateMask(e.target.value);
-                setDateStart(masked);
-                setValue("dateStart", masked);
+
+                setValue("dateStart", masked, {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                });
               }}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
@@ -119,6 +106,7 @@ const TravelForm = () => {
               {errors.dateStart?.message}
             </p>
           </div>
+
           <div>
             <p className="pb-2.5">{t("dateend.p")}</p>
             <input
@@ -126,11 +114,13 @@ const TravelForm = () => {
               value={dateEnd || ""}
               placeholder={t("dateend.placeholder")}
               {...register("dateEnd")}
-              name="dateEnd"
               onChange={(e) => {
                 const masked = applyDateMask(e.target.value);
-                setDateEnd(masked);
-                setValue("dateEnd", masked);
+
+                setValue("dateEnd", masked, {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                });
               }}
               className="bg-[#ffffff68] px-5 py-2.5 border solid rounded-sm outline-none cursor-pointer placeholder:text-white placeholder:text-xs max-md:w-full"
             />
@@ -139,18 +129,21 @@ const TravelForm = () => {
             </p>
           </div>
         </div>
+
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("purpose.p")}</p>
           <TravelPurpose />
         </div>
+
         <div className="mb-7 max-sm:mb-5">
           <p className="pb-2.5">{t("notes.p")}</p>
           <textarea
             name="notes"
-            className="bg-[#ffffff68] resize-none  w-full break-all border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
+            className="bg-[#ffffff68] resize-none w-full break-all border solid rounded-sm outline-none px-5 py-2.5 placeholder:text-white placeholder:text-xs"
             placeholder={t("notes.placeholder")}
           />
         </div>
+
         <div className="flex justify-between items-center">
           <Link to="/">
             <ButtonBack isPending={isPending} />
@@ -160,12 +153,11 @@ const TravelForm = () => {
             disabled={isPending}
             className="px-5 py-1.5 cursor-pointer border solid rounded-sm outline-none focus:underline underline-offset-3 decoration-1 under"
           >
-            {isPending
-              ? isPending && <p>{t("btn.loading")}</p>
-              : t("btn.accept")}
+            {isPending ? t("btn.loading") : t("btn.accept")}
           </button>
         </div>
       </form>
+
       <ToastContainer
         position="bottom-right"
         autoClose={3000}

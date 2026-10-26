@@ -1,17 +1,22 @@
-import { useReactTable, getCoreRowModel, ColumnDef } from "@tanstack/react-table";
+
+import { useState } from "react";
+import {
+  useReactTable,
+  getCoreRowModel,
+} from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 import ReadOnlyRow from "./ReadOnlyRow";
-import { ToastContainer, Slide, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { IRow } from "../pages/travel/TravelRequestPage";
+import { deleteTravelRequest } from "../api/travel";
+import type { TravelRow } from "../api/travel";
 
 type TableProps = {
-  modalActive: boolean;
-  data: IRow[];
-  columnDef: ColumnDef<IRow>[];
-  setModalActive: (value: boolean) => void;
-  setRows: React.Dispatch<React.SetStateAction<IRow[]>>;
-  handleRowId: (row: IRow) => void;
+  data: TravelRow[];
+  columnDef: ColumnDef<TravelRow>[];
+  setRows: React.Dispatch<React.SetStateAction<TravelRow[]>>;
+  handleRowId: (row: TravelRow) => void;
 };
 
 const Table = ({
@@ -21,19 +26,23 @@ const Table = ({
   handleRowId,
 }: TableProps) => {
   const { t } = useTranslation("travelrequestpage");
-  const BASE_URL = import.meta.env.VITE_API_URL;
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const handleDelete = async (id: string) => {
-    try {
-      const response = await fetch(`${BASE_URL}/newtravel/${id}`, {
-        method: "delete",
-      });
-      if (!response.ok) throw new Error("Не удалось удалить поездку");
+    if (deletingId) return;
 
-      setRows((prev) => prev.filter((item) => item.id !== id));
+    setDeletingId(id);
+
+    try {
+      await deleteTravelRequest(id);
+
+      setRows((prev) => prev.filter((row) => row.id !== id));
+      toast.success("Поездка удалена!");
     } catch (error) {
-      if (error instanceof Error)
-        toast.error("Возникла проблема с запросом:" + error.message);
+      console.error("Ошибка удаления поездки:", error);
+      toast.error("Не удалось удалить поездку");
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -66,8 +75,9 @@ const Table = ({
           </tr>
         </thead>
         <tbody>
-          {tableInstance.getRowModel().rows.map((row, index) => (
+          {tableInstance.getRowModel().rows.map((row) => (
             <ReadOnlyRow
+              key={row.original.id}
               row={row}
               handleDelete={handleDelete}
               handleRowId={handleRowId}
@@ -75,11 +85,6 @@ const Table = ({
           ))}
         </tbody>
       </table>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        transition={Slide}
-      />
     </div>
   );
 };
