@@ -1,12 +1,12 @@
 import React from "react";
-import backgroundImg from "./../assets/cover__backgroundPhoto.jpg"
+import backgroundImg from "./../assets/cover__backgroundPhoto.webp"
 
 import { useTranslation } from "react-i18next";
 
 
 const Cover = () => {
   const { t } = useTranslation("cover");
-  
+
   return (
     <div className="grid grid-cols-1 xl:px-12 bg-[#2A2C2F] pb-[92px]">
       <img

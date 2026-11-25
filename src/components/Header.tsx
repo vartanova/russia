@@ -1,4 +1,5 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
 import { useTranslation } from "react-i18next";
 import logo from "./../assets/__logo.svg";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,12 @@ import SwitchLocale from "./SwitchLocale";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [signedIn, setSignedIn] = useState(false);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => setSignedIn(Boolean(session)));
+    return () => subscription.unsubscribe();
+  }, []);
 
   const { t } = useTranslation("header");
 
@@ -32,7 +39,20 @@ const Header = () => {
         </button>
       </nav>
 
-      <div className="flex gap-4">
+      <div className="flex items-center gap-3">
+        <button type="button" onClick={async () => {
+          if (signedIn) {
+            const { error } = await supabase.auth.signOut();
+            if (error) return;
+          } else {
+            navigate("/request");
+          }
+        }}
+          className={`rounded-full border cursor-pointer border-white/70 px-4 py-2 text-sm font-medium text-white transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white
+           ${signedIn && "border-black text-black"}`
+          }>
+          {signedIn ? "Выйти" : "Войти"}
+        </button>
         <SwitchLocale />
       </div>
     </div>

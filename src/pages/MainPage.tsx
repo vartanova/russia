@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/Header";
 import Lead from "../components/Lead";
 import Intro from "../components/Intro";
@@ -6,7 +5,7 @@ import PhotoGrid from "../components/PhotoGrid";
 import Places from "../components/Places";
 import Cover from "../components/Cover";
 import Footer from "../components/Footer";
-import LeadImg from "../assets/leadImg.png";
+import LeadImg from "../assets/leadImg.webp";
 import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
@@ -14,10 +13,7 @@ const MainPage = () => {
 
   return (
     <div className="bg-[#2A2C2F]">
-      {/* {(() => {
-        throw new Error("Тестовая ошибка");
-      })()} */}
-      <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px]  max-[320px]:gap-[64px]">
+      <div className="pt-1.75 px-12 flex flex-col gap-[92px] max-[768px]:gap-[88px] max-[320px]:gap-[64px]">
         <Header />
         <Lead />
       </div>

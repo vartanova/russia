@@ -15,6 +15,8 @@ import {
 } from "../../api/travel";
 import type { TravelRow, TravelFormData } from "../../api/travel";
 import { supabase } from "../../lib/supabase";
+import authBackground from "../../assets/auth.webp";
+import { Link } from "react-router-dom";
 
 type TravelRequestPageProps = {
   pt?: string;
@@ -194,43 +196,29 @@ const TravelRequestPage = ({
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-5">
-        <form
-          onSubmit={handleSignIn}
-          className="w-full max-w-sm flex flex-col gap-5 border rounded-2xl p-8 backdrop-blur-lg bg-[#52525233]"
-        >
-          <h1 className="text-2xl font-bold">
-            Вход для администратора
-          </h1>
-
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Email"
-            autoComplete="username"
-            required
-            className="w-full border rounded-sm p-3 bg-[#ffffff20] outline-none"
-          />
-
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Пароль"
-            autoComplete="current-password"
-            required
-            className="w-full border rounded-sm p-3 bg-[#ffffff20] outline-none"
-          />
-
-          <button
-            type="submit"
-            disabled={isSigningIn}
-            className="border rounded-sm p-3 cursor-pointer disabled:opacity-50"
-          >
-            {isSigningIn ? "Вход..." : "Войти"}
-          </button>
-        </form>
+      <div className="relative min-h-screen overflow-hidden flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div aria-hidden="true" className="absolute inset-[-12px] bg-cover bg-center blur-sm" style={{ backgroundImage: `url(${authBackground})` }} />
+        <div aria-hidden="true" className="absolute inset-0 bg-[#172317]/55" />
+        <section className="auth-panel relative w-full max-w-[520px] bg-white text-[#202a1b] rounded-[32px] sm:rounded-[40px] px-7 sm:px-16 py-10 flex flex-col shadow-2xl">
+          <Link to="/" className="group self-start flex items-center gap-3 text-sm font-medium text-[#263a1c] transition-colors"><span aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full text-xl transition bg-[#405d2b] text-white">←</span> На главную</Link>
+          <form onSubmit={handleSignIn} className="flex flex-col gap-5 py-10 text-[#202a1b]">
+            <p className="text-xs uppercase tracking-[0.25em] text-[#4d6240] font-semibold">Путешествия по России</p>
+            <div className="mb-4">
+              <h1 className="text-4xl sm:text-5xl font-bold text-[#405d2b] tracking-tight">С возвращением</h1>
+              <p className="mt-4 text-[#505b4b] leading-relaxed">Войдите в кабинет администратора, чтобы управлять заявками на путешествия.</p>
+            </div>
+            <label className="text-sm text-[#202a1b] font-medium">Электронная почта
+              <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="name@example.com" autoComplete="username" required className="mt-2 w-full rounded-xl border border-[#aab5a5] bg-[#f8faf7] px-4 py-4 text-[#202a1b] placeholder:text-[#626e5d] outline-none focus:border-[#607b45] focus:ring-2 focus:ring-[#dbe8d2] transition" />
+            </label>
+            <label className="text-sm text-[#405d2b] font-medium">Пароль
+              <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Введите пароль" autoComplete="current-password" required className="mt-2 w-full rounded-xl border border-[#aab5a5] bg-[#f8faf7] px-4 py-4 text-[#202a1b] placeholder:text-[#626e5d] outline-none focus:border-[#607b45] focus:ring-2 focus:ring-[#dbe8d2] transition" />
+            </label>
+            <button type="submit" disabled={isSigningIn} className="mt-3 rounded-xl bg-[#405d2b] px-5 py-4 font-semibold text-white transition hover:bg-[#304923] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#405d2b] disabled:opacity-50 disabled:cursor-wait">
+              {isSigningIn ? "Вход..." : "Войти"}
+            </button>
+          </form>
+          <p className="text-xs text-[#626e5d]">Доступ к кабинету только для администратора</p>
+        </section>
 
         <ToastContainer
           position="bottom-right"
@@ -273,7 +261,7 @@ const TravelRequestPage = ({
           <button
             type="button"
             onClick={handleSignOut}
-            className="border rounded-sm px-3 py-1 cursor-pointer"
+            className="rounded-full border border-white/60 px-5 py-2 text-sm font-medium transition hover:bg-white hover:text-[#354b27] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Выйти
           </button>

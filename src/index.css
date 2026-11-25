@@ -10,6 +10,21 @@
   color: #aaaaaa;
 }
 
+.auth-panel,
+.auth-panel :where(h1, p, label, input, a) {
+  color: #263a1c;
+}
+
+.auth-panel input::placeholder {
+  color: #626e5d;
+  opacity: 1;
+}
+
+.auth-panel a span,
+.auth-panel button {
+  color: white;
+}
+
 .travel {
   height: auto;
   max-height: fit-content;
