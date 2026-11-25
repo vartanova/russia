@@ -33,3 +33,18 @@ Fake API routes can be accessed on [http://localhost:5000/newtravel](http://loca
 The easiest way to deploy your React app is to use the [Vercel Platform](https://vercel.com/). <br/>
 Check out detailed [documentation](https://vercel.com/guides/deploying-react-with-vercel) on how to deploy to Vercel.
 
+
+## Supabase
+
+Travel requests are stored in the Supabase PostgreSQL table `public."newTravel"`.
+
+Run `supabase/init.sql` in the Supabase SQL Editor to create the table if it does not exist. Configure RLS policies to allow guests to insert requests and administrators to read, update, and delete them. The script does not modify existing tables or policies.
+
+Use an existing administrator account.
+Run the database check:
+
+```sh
+npm run db:check
+```
+
+The check inserts a guest request, signs in as an administrator, reads the request, and deletes it. If cleanup fails, delete the request manually using the unique destination printed in the terminal.

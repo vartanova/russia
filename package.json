@@ -12,7 +12,8 @@
     "deploy": "gh-pages -d dist",
     "server": "npx json-server --watch src/constants/db.json --port 5000",
     "test": "start-server-and-test dev http://localhost:5173 cypress",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "db:check": "node scripts/check-db.js"
   },
   "eslintConfig": {
     "extends": [
